@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Flame, Phone, Building2, Stethoscope, Globe } from 'lucide-react'
+import { Flame, Phone, Building2, Stethoscope, Globe, ChevronDown } from 'lucide-react'
 import { Card, CardContent } from "@/components/ui/card"
 
 interface FocusArea {
@@ -104,6 +104,7 @@ const regions = [
 
 export function StrategicFocus() {
     const [activeRegion, setActiveRegion] = useState(0)
+    const [isOpen, setIsOpen] = useState(false)
 
     return (
         <section className="py-16">
@@ -144,33 +145,86 @@ export function StrategicFocus() {
                 {/* Regions Section */}
                 <div>
                     <h3 className="text-2xl text-center font-semibold text-[#08314e] mb-8">Focus Regions</h3>
-                    <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-                        <div className="flex flex-col lg:flex-row">
-                            <div className="lg:w-1/3 bg-[#08314e]">
+                    <div className="bg-white rounded-2xl shadow-xl">
+                        <div className="flex flex-col">
+                            {/* Mobile Dropdown */}
+                            <div className="lg:hidden">
+                                <button 
+                                    onClick={() => setIsOpen(!isOpen)}
+                                    className="w-full flex items-center justify-between p-4 bg-[#08314e] text-white rounded-t-2xl"
+                                >
+                                    <div className="flex items-center">
+                                        <Globe className="w-5 h-5 mr-3" />
+                                        <span className="font-semibold">{regions[activeRegion].name}</span>
+                                    </div>
+                                    <ChevronDown className={`w-5 h-5 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+                                </button>
+                                
+                                {/* Dropdown Menu */}
+                                {isOpen && (
+                                    <div className="absolute z-10 w-full bg-white shadow-lg border-t border-gray-100">
+                                        {regions.map((region, index) => (
+                                            <button
+                                                key={index}
+                                                onClick={() => {
+                                                    setActiveRegion(index)
+                                                    setIsOpen(false)
+                                                }}
+                                                className={`w-full text-left p-4 flex items-center
+                                                    ${index === activeRegion 
+                                                        ? 'bg-gray-50 text-[#08314e]' 
+                                                        : 'text-gray-700 hover:bg-gray-50'
+                                                    }
+                                                    ${index !== regions.length - 1 ? 'border-b border-gray-100' : ''}
+                                                `}
+                                            >
+                                                <Globe className="w-5 h-5 mr-3" />
+                                                <span className="font-semibold">{region.name}</span>
+                                            </button>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
+
+                            {/* Desktop Tabs */}
+                            <div className="hidden lg:flex bg-[#08314e] rounded-t-2xl">
                                 {regions.map((region, index) => (
                                     <button
                                         key={index}
                                         onClick={() => setActiveRegion(index)}
-                                        className={`w-full text-left p-6 border-b border-[#08314e]/20 transition-colors ${index === activeRegion ? 'bg-white text-[#08314e]' : 'text-white hover:bg-[#08314e]/80'
-                                            }`}
+                                        className={`flex-1 flex items-center justify-center px-6 py-4 transition-colors
+                                            ${index === activeRegion 
+                                                ? 'bg-white text-[#08314e] rounded-t-lg' 
+                                                : 'text-white hover:bg-white hover:bg-opacity-10 rounded-t-2xl'
+                                            }
+                                            ${index !== regions.length - 1 ? 'border-r border-[#08314e]/20' : ''}
+                                        `}
                                     >
-                                        <div className="flex items-center">
-                                            <Globe className={`w-5 h-5 mr-3 ${index === activeRegion ? 'text-[#08314e]' : 'text-white'
-                                                }`} />
-                                            <span className="font-semibold">{region.name}</span>
-                                        </div>
+                                        <Globe 
+                                            className={`w-5 h-5 mr-3 
+                                                ${index === activeRegion ? 'text-[#08314e]' : 'text-white'}
+                                            `} 
+                                        />
+                                        <span className="font-semibold">{region.name}</span>
                                     </button>
                                 ))}
                             </div>
-                            <div className="lg:w-2/3 p-8">
+
+                            {/* Content area */}
+                            <div className="p-8">
                                 <motion.div
                                     key={activeRegion}
-                                    initial={{ opacity: 0, x: 20 }}
-                                    animate={{ opacity: 1, x: 0 }}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.3 }}
+                                    className="h-full"
                                 >
-                                    <h4 className="text-xl font-semibold text-[#08314e] mb-4">{regions[activeRegion].name}</h4>
-                                    <p className="text-gray-600 mb-6">{regions[activeRegion].description}</p>
+                                    <h4 className="text-xl font-semibold text-[#08314e] mb-4">
+                                        {regions[activeRegion].name}
+                                    </h4>
+                                    <p className="text-gray-600 mb-6">
+                                        {regions[activeRegion].description}
+                                    </p>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                         {regions[activeRegion].initiatives.map((initiative, index) => (
                                             <div key={index} className="flex items-center">

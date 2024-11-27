@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { Button } from "@/components/ui/button"
+import { ScrollLink } from "@/components/ui/scroll-link"
 
 export function Hero() {
     return (
@@ -7,7 +8,7 @@ export function Hero() {
             {/* Background Image */}
             <Image
                 src="/images/handshake.webp"
-                alt="Background"
+                alt="Background images of two people shaking hands"
                 fill
                 priority
                 className="object-cover"
@@ -25,9 +26,11 @@ export function Hero() {
                     <p className="text-base md:text-lg mb-6">
                         Versaa Tech delivers innovative and results-driven solutions to help organizations attract, develop, and retain top talent.
                     </p>
-                    <Button className="bg-[#08314e] hover:bg-[#08314e]/90 text-white px-6 py-2">
-                        Discover How We Can Help
-                    </Button>
+                    <ScrollLink href="#contact">
+                        <Button className="bg-[#08314e] hover:bg-[#08314e]/90 text-white px-6 py-2">
+                            Discover How We Can Help
+                        </Button>
+                    </ScrollLink>
                 </div>
             </div>
         </section>

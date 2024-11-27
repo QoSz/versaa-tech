@@ -1,6 +1,24 @@
+import * as React from 'react'
 import Link from 'next/link'
-import { Facebook, Twitter, LinkedinIcon as LinkedIn, Instagram } from 'lucide-react'
+import { Facebook, Twitter, LinkedinIcon as LinkedIn, Instagram, LayoutGrid, Building2, Lightbulb, Info, Users, Building, Phone } from 'lucide-react'
 import { Separator } from "@/components/ui/separator"
+import { ScrollLink } from "@/components/ui/scroll-link"
+
+const navigation = {
+  main: [
+    { name: 'Home', href: '/#' },
+    { name: 'About', href: '/#about' },
+    { name: 'Services', href: '/#services' },
+    { name: 'Industries', href: '/#industries' },
+    { name: 'Contact', href: '/#contact' },
+  ],
+  social: [
+    { name: 'Facebook', href: '#' },
+    { name: 'Twitter', href: '#' },
+    { name: 'LinkedIn', href: '#' },
+    { name: 'Instagram', href: '#' },
+  ],
+}
 
 export function Footer() {
     return (
@@ -16,11 +34,19 @@ export function Footer() {
                     <div className="space-y-4">
                         <h3 className="text-lg font-semibold">Quick Links</h3>
                         <ul className="space-y-2">
-                            {['Services', 'Industries', 'How We Work', 'About Us'].map((item) => (
-                                <li key={item}>
-                                    <Link href="#" className="text-sm text-gray-300 hover:text-white transition-colors">
-                                        {item}
-                                    </Link>
+                            {[
+                                { name: 'Overview', href: '#overview', icon: LayoutGrid },
+                                { name: 'Industries', href: '#industries', icon: Building2 },
+                                { name: 'How We Work', href: '#differentiators', icon: Lightbulb },
+                                { name: 'About', href: '#about', icon: Building },
+                                { name: 'Leadership', href: '#about-leadership', icon: Users },
+                                { name: 'Contact', href: '#contact', icon: Phone },
+                            ].map((item) => (
+                                <li key={item.name}>
+                                    <ScrollLink href={item.href} className="text-sm text-gray-300 hover:text-white transition-colors flex items-center gap-2">
+                                        {React.createElement(item.icon, { size: 14 })}
+                                        {item.name}
+                                    </ScrollLink>
                                 </li>
                             ))}
                         </ul>
@@ -38,7 +64,7 @@ export function Footer() {
                 <Separator className="my-8 bg-white/20" />
                 <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
                     <p className="text-sm text-gray-300">
-                        © {new Date().getFullYear()} Versaa Tech. All rights reserved.
+                        &copy; {new Date().getFullYear()} Versaa Tech. All rights reserved.
                     </p>
                     <div className="flex space-x-4">
                         {[Facebook, Twitter, LinkedIn, Instagram].map((Icon, index) => (
@@ -52,4 +78,3 @@ export function Footer() {
         </footer>
     )
 }
-

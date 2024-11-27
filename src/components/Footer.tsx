@@ -1,24 +1,9 @@
 import * as React from 'react'
 import Link from 'next/link'
-import { Facebook, Twitter, LinkedinIcon as LinkedIn, Instagram, LayoutGrid, Building2, Lightbulb, Info, Users, Building, Phone } from 'lucide-react'
+import { Facebook, Twitter, LinkedinIcon as LinkedIn, Instagram, LayoutGrid, Building2, Lightbulb, Users, Building, Phone } from 'lucide-react'
 import { Separator } from "@/components/ui/separator"
 import { ScrollLink } from "@/components/ui/scroll-link"
 
-const navigation = {
-  main: [
-    { name: 'Home', href: '/#' },
-    { name: 'About', href: '/#about' },
-    { name: 'Services', href: '/#services' },
-    { name: 'Industries', href: '/#industries' },
-    { name: 'Contact', href: '/#contact' },
-  ],
-  social: [
-    { name: 'Facebook', href: '#' },
-    { name: 'Twitter', href: '#' },
-    { name: 'LinkedIn', href: '#' },
-    { name: 'Instagram', href: '#' },
-  ],
-}
 
 export function Footer() {
     return (

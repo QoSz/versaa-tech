@@ -1,5 +1,15 @@
+'use client'
+
+import { useState } from 'react'
 import Image from 'next/image'
 import { Card, CardContent } from "@/components/ui/card"
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+} from "@/components/ui/dialog"
 
 interface TeamMember {
     name: string
@@ -36,41 +46,77 @@ const teamMembers: TeamMember[] = [
 ]
 
 export function Team() {
-    return (
-        <section className="py-16 bg-white">
-            <div className="container mx-auto px-4">
-                {/* Leadership Team */}
-                <div className="text-center mb-12">
-                    <h2 className="text-3xl font-bold text-[#08314e] mb-4">Our Leadership</h2>
-                    <p className="text-gray-600 max-w-2xl mx-auto">
-                        Meet our experienced team of industry veterans leading the way in human capital solutions.
-                    </p>
-                </div>
+    const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null)
 
-                <div className="space-y-8">
-                    {teamMembers.map((member) => (
-                        <Card key={member.name} className="overflow-hidden rounded-2xl">
-                            <div className="flex flex-col md:flex-row">
-                                <div className="md:w-1/3 p-6 flex flex-col items-center justify-center bg-gray-100">
-                                    <div className="relative w-40 h-40 mb-4">
+    const truncateDescription = (text: string) => {
+        return text.length > 100 ? text.substring(0, 100) + "..." : text
+    }
+
+    return (
+        <section className="py-12 px-4 md:px-8 bg-white">
+            {/* Leadership Team */}
+            <div className="text-center mb-12">
+                <h2 className="text-3xl font-bold text-[#08314e] mb-4">Our Leadership</h2>
+                <p className="text-gray-600 max-w-2xl mx-auto">
+                    Meet our experienced team of industry veterans leading the way in human capital solutions.
+                </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {teamMembers.map((member) => (
+                    <Card 
+                        key={member.name} 
+                        className="overflow-hidden rounded-2xl cursor-pointer hover:shadow-lg transition-shadow"
+                        onClick={() => setSelectedMember(member)}
+                    >
+                        <CardContent className="p-6">
+                            <div className="flex items-center gap-4 mb-4">
+                                <div className="relative w-16 h-16 flex-shrink-0">
+                                    <Image
+                                        src={member.image}
+                                        alt={member.name}
+                                        fill
+                                        className="rounded-full object-cover"
+                                    />
+                                </div>
+                                <div>
+                                    <h3 className="text-lg font-semibold text-[#08314e]">{member.name}</h3>
+                                    <p className="text-sm text-gray-600">{member.role}</p>
+                                </div>
+                            </div>
+                            <p className="text-gray-600 text-sm">{truncateDescription(member.description)}</p>
+                        </CardContent>
+                    </Card>
+                ))}
+            </div>
+
+            <Dialog open={!!selectedMember} onOpenChange={() => setSelectedMember(null)}>
+                <DialogContent className="sm:max-w-[600px] p-6">
+                    {selectedMember && (
+                        <>
+                            <DialogHeader>
+                                <DialogTitle className="flex items-center gap-6 mb-6">
+                                    <div className="relative w-24 h-24">
                                         <Image
-                                            src={member.image}
-                                            alt={member.name}
+                                            src={selectedMember.image}
+                                            alt={selectedMember.name}
                                             fill
                                             className="rounded-full object-cover"
                                         />
                                     </div>
-                                    <h3 className="text-xl font-semibold text-[#08314e] mb-1">{member.name}</h3>
-                                    <p className="text-gray-600">{member.role}</p>
-                                </div>
-                                <CardContent className="md:w-2/3 p-6 flex items-center">
-                                    <p className="text-gray-600">{member.description}</p>
-                                </CardContent>
-                            </div>
-                        </Card>
-                    ))}
-                </div>
-            </div>
+                                    <div>
+                                        <h3 className="text-2xl font-semibold text-[#08314e] mb-2">{selectedMember.name}</h3>
+                                        <p className="text-lg text-gray-600">{selectedMember.role}</p>
+                                    </div>
+                                </DialogTitle>
+                                <DialogDescription className="mt-6 text-base leading-relaxed text-gray-600">
+                                    {selectedMember.description}
+                                </DialogDescription>
+                            </DialogHeader>
+                        </>
+                    )}
+                </DialogContent>
+            </Dialog>
         </section>
     )
 }

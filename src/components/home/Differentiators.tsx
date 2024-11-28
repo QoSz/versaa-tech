@@ -200,7 +200,7 @@ export function Differentiators() {
     const [activeIndex, setActiveIndex] = useState(0)
 
     return (
-        <section className="py-16 bg-gradient-to-br from-gray-50 to-white">
+        <section className="py-12 bg-gradient-to-br from-gray-50 to-white">
             <div className="container mx-auto px-4">
                 <h2 className="text-3xl font-bold text-[#08314e] mb-8 text-center">Our Differentiators</h2>
 

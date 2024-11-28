@@ -72,8 +72,8 @@ const industries: Industry[] = [
 
 export function Industries() {
     return (
-        <section className="py-16 bg-gradient-to-br from-gray-50 to-white">
-            <div className="container mx-auto px-4">
+        <section className="py-12 bg-gradient-to-br from-gray-50 to-white">
+            <div className="px-4 md:px-8">
                 <div className="text-center mb-12">
                     <h2 className="text-3xl font-bold text-[#08314e] mb-4">Our Industry Practices</h2>
                     <p className="text-gray-600 max-w-2xl mx-auto">

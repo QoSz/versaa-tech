@@ -107,7 +107,7 @@ export function StrategicFocus() {
     const [isOpen, setIsOpen] = useState(false)
 
     return (
-        <section className="py-16">
+        <section className="py-12">
             <div className="container mx-auto px-4">
                 <div className="mb-16">
                     <h2 className="text-3xl text-center font-bold text-[#08314e] mb-2">Strategic Focus 2024-25</h2>
@@ -116,7 +116,7 @@ export function StrategicFocus() {
 
                 {/* Industries Section */}
                 <div className="mb-20">
-                    <h3 className="text-2xl text-center font-semibold text-[#08314e] mb-8">Focus Industries</h3>
+                    <h3 className="text-2xl text-center font-semibold text-[#08314e] mb-8">Featured Industries</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         {industries.map((industry, index) => {
                             const Icon = industry.icon
@@ -144,7 +144,7 @@ export function StrategicFocus() {
 
                 {/* Regions Section */}
                 <div>
-                    <h3 className="text-2xl text-center font-semibold text-[#08314e] mb-8">Focus Regions</h3>
+                    <h3 className="text-2xl text-center font-semibold text-[#08314e] mb-8">Target Regions</h3>
                     <div className="bg-white rounded-2xl shadow-xl">
                         <div className="flex flex-col">
                             {/* Mobile Dropdown */}
@@ -242,4 +242,3 @@ export function StrategicFocus() {
         </section>
     )
 }
-

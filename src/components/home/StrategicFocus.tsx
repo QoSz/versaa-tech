@@ -2,62 +2,13 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Flame, Phone, Building2, Stethoscope, Globe, ChevronDown } from 'lucide-react'
-import { Card, CardContent } from "@/components/ui/card"
+import { Globe, ChevronDown } from 'lucide-react'
 
 interface FocusArea {
     name: string
-    icon: React.ElementType
     description: string
     initiatives: string[]
 }
-
-const industries: FocusArea[] = [
-    {
-        name: "Oil & Gas",
-        icon: Flame,
-        description: "Strategic talent solutions for the energy sector's evolving needs",
-        initiatives: [
-            "Renewable energy transition expertise",
-            "Digital transformation specialists",
-            "HSE professionals",
-            "Project management experts"
-        ]
-    },
-    {
-        name: "Telecom",
-        icon: Phone,
-        description: "Supporting the telecommunications industry's rapid advancement",
-        initiatives: [
-            "5G network specialists",
-            "IoT implementation experts",
-            "Infrastructure architects",
-            "Digital service consultants"
-        ]
-    },
-    {
-        name: "Hospitality",
-        icon: Building2,
-        description: "Elevating guest experiences through exceptional talent",
-        initiatives: [
-            "Customer experience designers",
-            "Revenue management experts",
-            "Digital transformation leaders",
-            "Sustainability consultants"
-        ]
-    },
-    {
-        name: "Pharma & Health",
-        icon: Stethoscope,
-        description: "Advancing healthcare through specialized talent solutions",
-        initiatives: [
-            "Clinical research professionals",
-            "Regulatory affairs experts",
-            "Digital health specialists",
-            "Quality assurance leaders"
-        ]
-    }
-]
 
 const regions = [
     {
@@ -109,42 +60,9 @@ export function StrategicFocus() {
     return (
         <section className="py-12">
             <div className="container mx-auto px-4">
-                <div className="mb-16">
-                    <h2 className="text-3xl text-center font-bold text-[#08314e] mb-2">Strategic Focus 2024-25</h2>
-                    <p className="text-gray-600 text-center">Our targeted approach to industry practices and geographical presence</p>
-                </div>
-
-                {/* Industries Section */}
-                <div className="mb-20">
-                    <h3 className="text-2xl text-center font-semibold text-[#08314e] mb-8">Featured Industries</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {industries.map((industry, index) => {
-                            const Icon = industry.icon
-                            return (
-                                <Card key={index} className="bg-gray-50 border-none shadow-md hover:shadow-lg transition-shadow">
-                                    <CardContent className="p-6">
-                                        <div className="flex items-center mb-4">
-                                            <div className="p-2 bg-white rounded-lg shadow-sm mr-4">
-                                                <Icon className="w-5 h-5 text-[#08314e]" />
-                                            </div>
-                                            <h4 className="text-lg font-semibold text-[#08314e]">{industry.name}</h4>
-                                        </div>
-                                        <p className="text-gray-600 text-sm mb-4">{industry.description}</p>
-                                        <ul className="space-y-2 list-disc list-inside">
-                                            {industry.initiatives.map((initiative, i) => (
-                                                <li key={i} className="text-sm text-gray-500">{initiative}</li>
-                                            ))}
-                                        </ul>
-                                    </CardContent>
-                                </Card>
-                            )
-                        })}
-                    </div>
-                </div>
-
                 {/* Regions Section */}
                 <div>
-                    <h3 className="text-2xl text-center font-semibold text-[#08314e] mb-8">Target Regions</h3>
+                    <h2 className="text-3xl font-bold text-[#08314e] mb-8 text-center">Regions We Operate In</h2>
                     <div className="bg-white rounded-2xl shadow-xl">
                         <div className="flex flex-col">
                             {/* Mobile Dropdown */}

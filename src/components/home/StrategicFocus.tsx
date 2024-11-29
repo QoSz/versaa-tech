@@ -4,12 +4,6 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Globe, ChevronDown } from 'lucide-react'
 
-interface FocusArea {
-    name: string
-    description: string
-    initiatives: string[]
-}
-
 const regions = [
     {
         name: "East Africa",

@@ -54,7 +54,7 @@ export function Navigation() {
         )}>
             <div className="p-4 md:p-6">
                 <nav className="flex items-center justify-between">
-                    <Link href="/" className="text-[#08314e] text-2xl font-bold tracking-tighter hover:opacity-80 transition-opacity">
+                    <Link href="/" className="text-2xl font-bold tracking-tighter hover:opacity-80 transition-opacity bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent">
                         Versaa Tech
                     </Link>
                     <div className="hidden md:flex space-x-6">
@@ -65,11 +65,14 @@ export function Navigation() {
                                 className={cn(
                                     "text-sm font-medium transition-colors flex items-center gap-2",
                                     isScrolled
-                                        ? "text-[#08314e]/90 hover:text-[#08314e]"
-                                        : "text-[#08314e] hover:text-[#08314e]/80"
+                                        ? "text-transparent bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text hover:opacity-90"
+                                        : "text-transparent bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text hover:opacity-80"
                                 )}
                             >
-                                {React.createElement(item.icon, { size: 16 })}
+                                {React.createElement(item.icon, { 
+                                    size: 16,
+                                    className: "stroke-blue-600"
+                                })}
                                 {item.title}
                             </ScrollLink>
                         ))}
@@ -78,15 +81,14 @@ export function Navigation() {
                                 <Button 
                                     variant="ghost" 
                                     className={cn(
-                                        "text-sm font-medium transition-colors flex items-center gap-2 p-0 h-auto bg-transparent hover:bg-transparent",
-                                        isScrolled
-                                            ? "text-[#08314e]/90 hover:text-[#08314e]"
-                                            : "text-[#08314e] hover:text-[#08314e]/80"
+                                        "text-sm font-medium transition-opacity flex items-center gap-2 p-0 h-auto bg-transparent",
+                                        "hover:bg-transparent hover:opacity-80",
+                                        "text-transparent bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text"
                                     )}
                                 >
-                                    <Info className="h-4 w-4" />
+                                    <Info className="stroke-blue-600" />
                                     About
-                                    <ChevronDown className="h-4 w-4" />
+                                    <ChevronDown className="stroke-blue-600" />
                                 </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
@@ -97,8 +99,13 @@ export function Navigation() {
                                         className="w-full"
                                     >
                                         <DropdownMenuItem className="flex items-center gap-2 cursor-pointer">
-                                            {React.createElement(item.icon, { size: 16 })}
-                                            {item.title}
+                                            {React.createElement(item.icon, { 
+                                                size: 16, 
+                                                className: "stroke-blue-600" 
+                                            })}
+                                            <span className="text-transparent bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text group-hover:opacity-80 transition-opacity">
+                                                {item.title}
+                                            </span>
                                         </DropdownMenuItem>
                                     </ScrollLink>
                                 ))}
@@ -108,7 +115,7 @@ export function Navigation() {
                     <Sheet>
                         <SheetTrigger asChild>
                             <Button variant="ghost" className="md:hidden p-0 hover:bg-transparent" size="icon">
-                                <Menu className="h-6 w-6 text-[#08314e]" />
+                                <Menu className="h-6 w-6 stroke-blue-600" />
                                 <span className="sr-only">Toggle menu</span>
                             </Button>
                         </SheetTrigger>
@@ -120,16 +127,19 @@ export function Navigation() {
                                 </SheetDescription>
                             </SheetHeader>
                             <nav className="flex flex-col space-y-4 mt-6">
-                                <Link href="/" className="text-[#08314e] text-xl font-bold tracking-tighter hover:opacity-80 transition-opacity mb-6">
+                                <Link href="/" className="text-xl font-bold tracking-tighter hover:opacity-80 transition-opacity mb-6 bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent">
                                     Versaa Tech
                                 </Link>
                                 {navItems.map((item) => (
                                     <ScrollLink
                                         key={item.title}
                                         href={item.href}
-                                        className="text-lg font-medium text-[#08314e] hover:text-[#08314e]/80 flex items-center gap-2"
+                                        className="text-lg font-medium flex items-center gap-2 text-transparent bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text hover:opacity-90"
                                     >
-                                        {React.createElement(item.icon, { size: 20 })}
+                                        {React.createElement(item.icon, { 
+                                            size: 20,
+                                            className: "stroke-blue-600"
+                                        })}
                                         {item.title}
                                     </ScrollLink>
                                 ))}
@@ -137,9 +147,12 @@ export function Navigation() {
                                     <ScrollLink
                                         key={item.title}
                                         href={item.href}
-                                        className="text-lg font-medium text-[#08314e] hover:text-[#08314e]/80 flex items-center gap-2"
+                                        className="text-lg font-medium flex items-center gap-2 text-transparent bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text hover:opacity-90"
                                     >
-                                        {React.createElement(item.icon, { size: 20 })}
+                                        {React.createElement(item.icon, { 
+                                            size: 20,
+                                            className: "stroke-blue-600"
+                                        })}
                                         {item.title}
                                     </ScrollLink>
                                 ))}

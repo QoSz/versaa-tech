@@ -4,7 +4,7 @@ import { ScrollLink } from "@/components/ui/scroll-link"
 
 export function Hero() {
     return (
-        <section className="relative w-full h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
+        <section className="relative w-full h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#e0f7fa] to-[#b3e5fc]">
             {/* Background Image */}
             <Image
                 src="/images/handshake.webp"
@@ -27,7 +27,7 @@ export function Hero() {
                         Versaa Tech delivers innovative and results-driven solutions to help organizations attract, develop, and retain top talent.
                     </p>
                     <ScrollLink href="#contact">
-                        <Button className="bg-[#08314e] hover:bg-[#08314e]/90 text-white px-6 py-2">
+                        <Button className="bg-gradient-to-r from-blue-500 to-blue-700 hover:bg-gradient-to-r hover:from-blue-500/90 hover:to-blue-700/90 text-white px-6 py-2">
                             Discover How We Can Help
                         </Button>
                     </ScrollLink>
@@ -36,4 +36,3 @@ export function Hero() {
         </section>
     )
 }
-

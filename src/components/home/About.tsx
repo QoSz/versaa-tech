@@ -26,11 +26,11 @@ const highlights = [
 
 export function About() {
     return (
-        <section className="py-12 bg-gray-50">
+        <section className="py-12">
             <div className="container mx-auto px-4">
                 {/* Main Introduction */}
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl font-bold text-[#08314e] mb-6">About Versaa Tech</h2>
+                    <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent mb-6">About Versaa Tech</h2>
                     <p className="text-gray-600 max-w-3xl mx-auto text-lg">
                         Versaa Tech is a knowledge-driven organization. Our cornerstone is built on deep understanding of job market trends, invaluable insights, and extensive expertise in human capital solutions.
                     </p>
@@ -41,10 +41,10 @@ export function About() {
                     {highlights.map((item, index) => {
                         const Icon = item.icon
                         return (
-                            <Card key={index} className="bg-white rounded-2xl hover:shadow-lg transition-shadow">
+                            <Card key={index} className="bg-white rounded-2xl hover:shadow-lg transition-shadow bg-gradient-to-r from-white to-gray-100 h-full">
                                 <CardContent className="p-6">
-                                    <Icon className="w-12 h-12 text-[#08314e] mb-4" />
-                                    <h3 className="text-xl font-semibold text-[#08314e] mb-3">{item.title}</h3>
+                                    <Icon className="w-12 h-12 text-blue-600 mb-4" />
+                                    <h3 className="text-xl font-semibold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent mb-3">{item.title}</h3>
                                     <p className="text-gray-600">{item.description}</p>
                                 </CardContent>
                             </Card>

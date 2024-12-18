@@ -72,10 +72,10 @@ const industries: Industry[] = [
 
 export function Industries() {
     return (
-        <section className="py-12 bg-gradient-to-br from-gray-50 to-white">
+        <section className="py-12">
             <div className="px-4 md:px-8">
                 <div className="text-center mb-12">
-                    <h2 className="text-3xl font-bold text-[#08314e] mb-4">Our Industry Practices</h2>
+                    <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent mb-4">Our Industry Practices</h2>
                     <p className="text-gray-600 max-w-2xl mx-auto">
                         We provide specialized human capital solutions across diverse industries, leveraging our deep understanding of sector-specific challenges and requirements.
                     </p>
@@ -87,15 +87,15 @@ export function Industries() {
                         return (
                             <Card
                                 key={index}
-                                className="group hover:shadow-lg transition-all duration-300 rounded-2xl overflow-hidden"
+                                className="group hover:shadow-lg transition-all duration-300 rounded-2xl overflow-hidden bg-gradient-to-r from-white to-gray-100"
                             >
                                 <CardContent className="p-6">
                                     <div className="flex items-start space-x-4">
                                         <div className="bg-[#08314e]/5 p-3 rounded-lg group-hover:bg-[#08314e]/10 transition-colors">
-                                            <Icon className="w-6 h-6 text-[#08314e]" />
+                                            <Icon className="w-6 h-6 text-blue-600" />
                                         </div>
                                         <div>
-                                            <h3 className="font-semibold text-[#08314e] mb-2">
+                                            <h3 className="font-semibold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent mb-2">
                                                 {industry.title}
                                             </h3>
                                             <p className="text-sm text-gray-600">
@@ -112,4 +112,3 @@ export function Industries() {
         </section>
     )
 }
-

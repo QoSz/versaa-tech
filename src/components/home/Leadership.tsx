@@ -53,10 +53,10 @@ export function Team() {
     }
 
     return (
-        <section className="py-12 px-4 md:px-8 bg-white">
+        <section className="py-12 px-4 md:px-8">
             {/* Leadership Team */}
             <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold text-[#08314e] mb-4">Our Leadership</h2>
+                <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent mb-4">Our Leadership</h2>
                 <p className="text-gray-600 max-w-2xl mx-auto">
                     Meet our experienced team of industry veterans leading the way in human capital solutions.
                 </p>
@@ -80,11 +80,11 @@ export function Team() {
                                     />
                                 </div>
                                 <div>
-                                    <h3 className="text-lg font-semibold text-[#08314e]">{member.name}</h3>
+                                    <h3 className="text-lg font-semibold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent">{member.name}</h3>
                                     <p className="text-sm text-gray-600">{member.role}</p>
                                 </div>
                             </div>
-                            <p className="text-gray-600 text-sm">{truncateDescription(member.description)}</p>
+                            <p className="text-gray-500 text-sm">{truncateDescription(member.description)}</p>
                         </CardContent>
                     </Card>
                 ))}
@@ -105,7 +105,7 @@ export function Team() {
                                         />
                                     </div>
                                     <div>
-                                        <h3 className="text-2xl font-semibold text-[#08314e] mb-2">{selectedMember.name}</h3>
+                                        <h3 className="text-2xl font-semibold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent mb-2">{selectedMember.name}</h3>
                                         <p className="text-lg text-gray-600">{selectedMember.role}</p>
                                     </div>
                                 </DialogTitle>

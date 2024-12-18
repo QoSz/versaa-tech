@@ -46,7 +46,7 @@ const contactInfo = [
 
 export function Contact() {
     return (
-        <section id="contact" className="py-12 bg-gradient-to-br from-gray-50 to-white">
+        <section className="py-12">
             <div className="px-4 md:px-8">
                 <motion.div
                     initial="hidden"
@@ -56,7 +56,7 @@ export function Contact() {
                     className="max-w-4xl mx-auto"
                 >
                     <motion.h2
-                        className="text-3xl font-bold text-center mb-4 text-[#08314e]"
+                        className="text-3xl font-bold text-center mb-4 text-blue-600"
                     >
                         <div className="flex items-center justify-center gap-2">
                             <MessageSquare className="h-8 w-8" />
@@ -79,12 +79,12 @@ export function Contact() {
                                 whileHover="hover"
                                 className="w-full"
                             >
-                                <Card className="bg-white h-full">
+                                <Card className="rounded-2xl bg-gradient-to-r from-white to-gray-100 h-full">
                                     <CardContent className="p-6">
                                         <div className="flex flex-col h-full space-y-4">
                                             <div className="flex items-center space-x-3">
                                                 <div className="p-2 bg-[#08314e]/10 rounded-lg">
-                                                    <info.icon className="h-6 w-6 text-[#08314e]" />
+                                                    <info.icon className="h-6 w-6 text-blue-600" />
                                                 </div>
                                                 <h3 className="font-semibold text-gray-900">
                                                     {info.title}
@@ -106,7 +106,7 @@ export function Contact() {
                                             ) : (
                                                 <a
                                                     href={info.link}
-                                                    className="text-[#08314e] hover:text-[#08314e]/80 text-base transition-colors"
+                                                    className="text-blue-600 hover:text-blue-600/80 text-base transition-colors"
                                                 >
                                                     {info.content}
                                                 </a>

@@ -46,7 +46,7 @@ export function Overview() {
                 {services.map((service) => (
                     <Card
                         key={service.title}
-                        className="rounded-2xl overflow-hidden bg-[#08314e] text-white hover:shadow-xl transition-shadow"
+                        className="rounded-2xl overflow-hidden bg-gradient-to-r from-blue-500 to-blue-700 text-white hover:shadow-xl transition-shadow"
                     >
                         <CardContent className="p-6 space-y-6">
                             <div className="flex items-center gap-4 mb-4">

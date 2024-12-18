@@ -200,28 +200,28 @@ export function Differentiators() {
     const [activeIndex, setActiveIndex] = useState(0)
 
     return (
-        <section className="py-12 bg-gradient-to-br from-gray-50 to-white">
+        <section className="py-12">
             <div className="container mx-auto px-4">
-                <h2 className="text-3xl font-bold text-[#08314e] mb-8 text-center">Our Differentiators</h2>
+                <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent mb-8 text-center">Our Differentiators</h2>
 
                 <div className="flex flex-col lg:flex-row gap-8">
                     <div className="lg:w-1/3">
                         {differentiators.map((item, index) => (
                             <button
                                 key={index}
-                                className={`w-full text-left p-4 rounded-lg transition-colors ${index === activeIndex ? 'bg-[#08314e] text-white' : 'hover:bg-gray-100'}`}
+                                className={`w-full text-left p-4 rounded-lg transition-colors ${index === activeIndex ? 'bg-gradient-to-r from-blue-500 to-blue-700 text-white' : 'hover:bg-gray-100'}`}
                                 onClick={() => setActiveIndex(index)}
                             >
                                 <div className="flex items-center">
-                                    {createElement(item.icon, { className: `w-6 h-6 mr-3 ${index === activeIndex ? 'text-white' : 'text-[#08314e]'}` })}
+                                    {createElement(item.icon, { className: `w-6 h-6 mr-3 ${index === activeIndex ? 'text-white' : 'text-blue-600'}` })}
                                     <span className="font-semibold">{item.title}</span>
-                                    <ChevronRight className={`ml-auto ${index === activeIndex ? 'text-white' : 'text-[#08314e]'}`} />
+                                    <ChevronRight className={`ml-auto ${index === activeIndex ? 'text-white' : 'text-blue-600'}`} />
                                 </div>
                             </button>
                         ))}
                     </div>
 
-                    <div className="lg:w-2/3 bg-white rounded-2xl shadow-lg p-8">
+                    <div className="lg:w-2/3 rounded-2xl shadow-lg p-8 bg-gradient-to-r from-white to-gray-100 h-full">
                         <AnimatePresence mode="wait">
                             <motion.div
                                 key={activeIndex}
@@ -232,8 +232,8 @@ export function Differentiators() {
                                 className="h-full flex flex-col justify-between"
                             >
                                 <div>
-                                    <h3 className="text-2xl font-bold text-[#08314e] mb-4 flex items-center gap-3">
-                                        {createElement(differentiators[activeIndex].icon, { className: "w-8 h-8" })}
+                                    <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent mb-4 flex items-center gap-3">
+                                        {createElement(differentiators[activeIndex].icon, { className: "w-8 h-8 text-blue-600" })}
                                         {differentiators[activeIndex].title}
                                     </h3>
                                     <p className="text-gray-600 text-lg leading-relaxed mb-6">{differentiators[activeIndex].description}</p>
@@ -241,14 +241,14 @@ export function Differentiators() {
                                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
                                         {differentiators[activeIndex].stats?.map((stat, index) => (
                                             <div key={index} className="bg-gray-50 p-4 rounded-lg text-center">
-                                                <div className="text-2xl font-bold text-[#08314e]">{stat.value}</div>
+                                                <div className="text-2xl font-bold text-blue-600">{stat.value}</div>
                                                 <div className="text-sm text-gray-600">{stat.label}</div>
                                             </div>
                                         ))}
                                     </div>
 
                                     <div className="mb-6">
-                                        <h4 className="text-lg font-semibold text-[#08314e] mb-3">Key Highlights</h4>
+                                        <h4 className="text-lg font-semibold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent mb-3">Key Highlights</h4>
                                         <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                             {differentiators[activeIndex].keyPoints.map((point, index) => (
                                                 <li key={index} className="flex items-start gap-2">
@@ -260,11 +260,11 @@ export function Differentiators() {
                                     </div>
 
                                     <div>
-                                        <h4 className="text-lg font-semibold text-[#08314e] mb-3">Key Features</h4>
+                                        <h4 className="text-lg font-semibold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent mb-3">Key Features</h4>
                                         <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                             {differentiators[activeIndex].features?.map((feature, index) => (
                                                 <li key={index} className="flex items-start gap-2">
-                                                    <CheckCircle2 className="w-5 h-5 text-[#08314e] mt-0.5 flex-shrink-0" />
+                                                    <CheckCircle2 className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
                                                     <span className="text-gray-700">{feature}</span>
                                                 </li>
                                             ))}

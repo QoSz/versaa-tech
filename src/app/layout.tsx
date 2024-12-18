@@ -4,6 +4,7 @@ import "./globals.css"
 import { Navigation } from "@/components/Navigation"
 import { Footer } from "@/components/Footer"
 import { PasswordProtection } from "@/components/PasswordProtection"
+import ScrollToTopButton from "@/components/ScrollToTopButton"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -24,6 +25,7 @@ export default function RootLayout({
           <Navigation />
           {children}
           <Footer />
+          <ScrollToTopButton />
         </PasswordProtection>
       </body>
     </html>

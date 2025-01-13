@@ -1,122 +1,55 @@
 'use client'
 
-import { useState } from 'react'
-import Image from 'next/image'
-import { Card, CardContent } from "@/components/ui/card"
-import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogHeader,
-    DialogTitle,
-} from "@/components/ui/dialog"
+import Link from 'next/link';
+import { Card, CardContent } from "@/components/ui/card";
 
 interface TeamMember {
-    name: string
-    role: string
-    image: string
-    description: string
+    name: string;
+    role: string;
+    initials: string;
 }
 
 const teamMembers: TeamMember[] = [
     {
-        name: "Sangy Vatsa",
-        role: "Founder",
-        image: "https://placehold.co/200x200",
-        description: "With over two decades of experience in technology and business leadership, Sangy brings a wealth of knowledge in driving innovation and growth in the human capital sector."
-    },
-    {
         name: "Ramit Walia",
-        role: "Chief Growth Enabler",
-        image: "https://placehold.co/200x200",
-        description: "Ramit's expertise in market expansion and strategic partnerships has been instrumental in Versaa Tech's rapid growth across diverse global markets."
+        role: "Chief Growth Officer",
+        initials: "RW"
     },
     {
-        name: "Monisha Gossain",
-        role: "Chief Advisor & Counsellor",
-        image: "https://placehold.co/200x200",
-        description: "Monisha's deep understanding of organizational psychology and talent development has shaped our approach to delivering impactful human capital solutions."
-    },
-    {
-        name: "KA",
-        role: "Chief Operations Officer",
-        image: "https://placehold.co/200x200",
-        description: "KA's operational excellence and process optimization strategies ensure that Versaa Tech delivers consistent, high-quality services to our global clientele."
+        name: "Bhavana Arora",
+        role: "Talent and Operations Head Team of Global Advisors in USA, Dubai, Mexico and Kenya",
+        initials: "BA"
     }
-]
+];
+
 
 export function Team() {
-    const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null)
-
-    const truncateDescription = (text: string) => {
-        return text.length > 100 ? text.substring(0, 100) + "..." : text
-    }
-
     return (
         <section className="py-12 px-4 md:px-8">
             {/* Leadership Team */}
             <div className="text-center mb-12">
                 <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent mb-4">Our Leadership</h2>
-                <p className="text-gray-600 max-w-2xl mx-auto">
-                    Meet our experienced team of industry veterans leading the way in human capital solutions.
+                <p className="text-gray-600 max-w-3xl mx-auto">
+                    Versaa Tech is led by a team of visionary leaders dedicated to driving innovation, excellence, and sustainable growth in the area of Human Capital Management. Committed to empowering human capital, our leadership team and our global advisors focus on job trends, professional development, skill enhancement, and creating tailored solutions for growth.
+                </p>
+                <p className="text-gray-600 max-w-3xl mx-auto mt-4">
+                    With a deep understanding of industry trends and workforce dynamics, they specialize in targeted recruiting and delivering customized human capital solutions. By aligning talent strategies with organizational needs, they ensure Versaa Tech remains a trusted partner in driving individual and business success. Their dedication to nurturing talent and fostering meaningful connections reflects Versaa Tech’s mission to be a trusted partner creating positive economic impact.
                 </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                 {teamMembers.map((member) => (
-                    <Card 
-                        key={member.name} 
-                        className="overflow-hidden rounded-2xl cursor-pointer hover:shadow-lg transition-shadow"
-                        onClick={() => setSelectedMember(member)}
-                    >
-                        <CardContent className="p-6">
-                            <div className="flex items-center gap-4 mb-4">
-                                <div className="relative w-16 h-16 flex-shrink-0">
-                                    <Image
-                                        src={member.image}
-                                        alt={member.name}
-                                        fill
-                                        className="rounded-full object-cover"
-                                    />
-                                </div>
-                                <div>
-                                    <h3 className="text-lg font-semibold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent">{member.name}</h3>
-                                    <p className="text-sm text-gray-600">{member.role}</p>
-                                </div>
-                            </div>
-                            <p className="text-gray-500 text-sm">{truncateDescription(member.description)}</p>
+                    <Card key={member.name} className="border-none shadow-md rounded-2xl">
+                        <CardContent className="p-6 flex flex-col items-center">
+                            <Link href="/" className="relative w-20 h-20 rounded-full bg-gray-200 flex items-center justify-center mb-4">
+                                <span className="text-xl font-semibold text-blue-600">{member.initials}</span>
+                            </Link>
+                            <h3 className="text-xl font-semibold text-gray-800 mb-2 text-center">{member.name}</h3>
+                            <p className="text-blue-600 text-center">{member.role}</p>
                         </CardContent>
                     </Card>
                 ))}
             </div>
-
-            <Dialog open={!!selectedMember} onOpenChange={() => setSelectedMember(null)}>
-                <DialogContent className="sm:max-w-[600px] p-6">
-                    {selectedMember && (
-                        <>
-                            <DialogHeader>
-                                <DialogTitle className="flex items-center gap-6 mb-6">
-                                    <div className="relative w-24 h-24">
-                                        <Image
-                                            src={selectedMember.image}
-                                            alt={selectedMember.name}
-                                            fill
-                                            className="rounded-full object-cover"
-                                        />
-                                    </div>
-                                    <div>
-                                        <h3 className="text-2xl font-semibold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent mb-2">{selectedMember.name}</h3>
-                                        <p className="text-lg text-gray-600">{selectedMember.role}</p>
-                                    </div>
-                                </DialogTitle>
-                                <DialogDescription className="mt-6 text-base leading-relaxed text-gray-600">
-                                    {selectedMember.description}
-                                </DialogDescription>
-                            </DialogHeader>
-                        </>
-                    )}
-                </DialogContent>
-            </Dialog>
         </section>
-    )
+    );
 }

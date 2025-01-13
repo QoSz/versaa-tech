@@ -3,7 +3,6 @@
 import * as React from "react"
 import Link from "next/link"
 import { Menu, LayoutGrid, Building2, Lightbulb, Info, Users, ChevronDown, Building, Phone } from 'lucide-react'
-
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { ScrollLink } from "@/components/ui/scroll-link"
@@ -21,6 +20,7 @@ import {
     SheetDescription,
     SheetTrigger,
 } from "@/components/ui/sheet"
+import Image from "next/image"
 
 const navItems = [
     { title: "Overview", href: "#overview", icon: LayoutGrid },
@@ -46,15 +46,20 @@ export function Navigation() {
     }, [])
 
     return (
-        <header className={cn(
-            "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out",
-            isScrolled
-                ? "bg-white/70 backdrop-blur-md shadow-md"
-                : "bg-gray-50"
-        )}>
+        <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
             <div className="p-4 md:p-6">
                 <nav className="flex items-center justify-between">
-                    <Link href="/" className="text-2xl font-bold tracking-tighter hover:opacity-80 transition-opacity bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent">
+                    <Link href="/" className="text-2xl font-bold tracking-tighter hover:opacity-80 transition-opacity bg-gradient-to-r from-cyan-400 to-blue-600 bg-clip-text text-transparent flex items-center gap-2">
+                        <div style={{ maxHeight: '40px', display: 'flex', alignItems: 'center' }}>
+                            <Image 
+                                src="/images/versaatech-logo-2.png"
+                                alt="Versaa Tech Logo"
+                                width={70}
+                                height={70}
+                                className="dark:invert"
+                                style={{ objectFit: 'contain', maxHeight: '70px' }}
+                            />
+                        </div>
                         Versaa Tech
                     </Link>
                     <div className="hidden md:flex space-x-6">
@@ -127,14 +132,24 @@ export function Navigation() {
                                 </SheetDescription>
                             </SheetHeader>
                             <nav className="flex flex-col space-y-4 mt-6">
-                                <Link href="/" className="text-xl font-bold tracking-tighter hover:opacity-80 transition-opacity mb-6 bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent">
+                                <Link href="/" className="text-2xl font-bold tracking-tighter hover:opacity-80 transition-opacity mb-6 bg-gradient-to-r from-cyan-400 to-blue-600 bg-clip-text text-transparent flex items-center gap-2">
+                                    <div style={{ maxHeight: '40px', display: 'flex', alignItems: 'center' }}>
+                                        <Image 
+                                            src="/images/versaatech-logo-2.png"
+                                            alt="Versaa Tech Logo"
+                                            width={60}
+                                            height={60}
+                                            className="dark:invert"
+                                            style={{ objectFit: 'contain', maxHeight: '70px' }}
+                                        />
+                                    </div>
                                     Versaa Tech
                                 </Link>
                                 {navItems.map((item) => (
                                     <ScrollLink
                                         key={item.title}
                                         href={item.href}
-                                        className="text-lg font-medium flex items-center gap-2 text-transparent bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text hover:opacity-90"
+                                        className="text-md font-medium flex items-center gap-2 text-transparent bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text hover:opacity-90"
                                     >
                                         {React.createElement(item.icon, { 
                                             size: 20,

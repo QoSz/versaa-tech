@@ -21,14 +21,14 @@ export function Hero() {
             <div className="relative z-10 container mx-auto px-6 md:px-8">
                 <div className="max-w-4xl mx-auto text-center text-white">
                     <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-4">
-                        Your Trusted Partner for Human Capital Solutions
+                        Your Trusted Partner for All Human Capital Services!
                     </h1>
                     <p className="text-base md:text-lg mb-6">
-                        Versaa Tech delivers innovative and results-driven solutions to help organizations attract, develop, and retain top talent.
+                        Versaa Tech delivers innovative and results-driven human capital solutions to help organizations grow.
                     </p>
                     <ScrollLink href="#contact">
                         <Button className="bg-gradient-to-r from-blue-500 to-blue-700 hover:bg-gradient-to-r hover:from-blue-500/90 hover:to-blue-700/90 text-white px-6 py-2">
-                            Discover How We Can Help
+                            How We Can Help
                         </Button>
                     </ScrollLink>
                 </div>

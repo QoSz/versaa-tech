@@ -18,28 +18,28 @@ const contactInfo = [
     {
         icon: Mail,
         title: "Email",
-        description: "Reach out to us anytime. We aim to respond to all inquiries within 24 hours.",
-        content: "info@versaatech.com",
+        description: "",
+        content: "info@VersaaTech.com",
         link: "mailto:info@versaatech.com"
     },
     {
         icon: Phone,
         title: "Phone",
-        description: "Our global team is available during business hours across multiple time zones.",
+        description: "",
         content: [
-            "US: +1 (555) 123-4567",
-            "UAE: +44 20 7123 4567",
-            "Kenya: +91 22 6123 4567"
+            { label: "US", number: "+1 (284) 836-9378" },
+            { label: "UAE", number: "+971 7 426 2738" },
+            { label: "Kenya", number: "+254 07 888 71946" }
         ]
     },
     {
         icon: MapPin,
-        title: "Global Offices",
-        description: "Strategic locations across three continents to serve our global clientele.",
+        title: "Global Locations",
+        description: "",
         content: [
-            "US: Michigan, USA",
-            "UAE: Dubai, UAE",
-            "Africa: Nairobi, Kenya"
+            "Michigan, USA",
+            "Dubai, UAE",
+            "Nairobi, Kenya"
         ]
     }
 ]
@@ -56,26 +56,21 @@ export function Contact() {
                     className="max-w-4xl mx-auto"
                 >
                     <motion.h2
-                        className="text-3xl font-bold text-center mb-4 text-blue-600"
+                        className="text-3xl font-bold text-center mb-12 text-blue-600"
                     >
                         <div className="flex items-center justify-center gap-2">
                             <MessageSquare className="h-8 w-8" />
                             Lets Have a Conversation ...
                         </div>
                     </motion.h2>
-                    <motion.p
-                        className="text-center text-gray-600 mb-12 max-w-2xl mx-auto"
-                    >
-                        Ready to transform your business? Get in touch with our team of experts today.
-                    </motion.p>
 
                     <motion.div
                         className="grid grid-cols-1 sm:grid-cols-3 gap-6"
                     >
                         {contactInfo.map((info) => (
-                            <motion.div 
-                                key={info.title} 
-                                variants={cardHoverVariant} 
+                            <motion.div
+                                key={info.title}
+                                variants={cardHoverVariant}
                                 whileHover="hover"
                                 className="w-full"
                             >
@@ -90,7 +85,7 @@ export function Contact() {
                                                     {info.title}
                                                 </h3>
                                             </div>
-                                            
+
                                             <p className="text-gray-600 text-base">
                                                 {info.description}
                                             </p>
@@ -98,9 +93,20 @@ export function Contact() {
                                             {Array.isArray(info.content) ? (
                                                 <div className="space-y-2">
                                                     {info.content.map((item, idx) => (
-                                                        <p key={idx} className="text-gray-600 text-base">
-                                                            {item}
-                                                        </p>
+                                                        typeof item === 'object' && item !== null && 'label' in item && 'number' in item ? (
+                                                            <div key={idx}>
+                                                                <a
+                                                                    href={`tel:${item.number}`}
+                                                                    className="text-gray-600 hover:text-gray-600/80 text-base transition-colors block"
+                                                                >
+                                                                    {`${item.label}: ${item.number}`}
+                                                                </a>
+                                                            </div>
+                                                        ) : (
+                                                            <p key={idx} className="text-gray-600 text-base">
+                                                                {item}
+                                                            </p>
+                                                        )
                                                     ))}
                                                 </div>
                                             ) : (

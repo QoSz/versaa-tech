@@ -1,19 +1,22 @@
 import * as React from 'react'
 import Link from 'next/link'
-import { Facebook, Twitter, LinkedinIcon as LinkedIn, Instagram, LayoutGrid, Building2, Lightbulb, Users, Building, Phone } from 'lucide-react'
+import { LayoutGrid, Building2, Lightbulb, Users, Building, Phone } from 'lucide-react'
 import { Separator } from "@/components/ui/separator"
 import { ScrollLink } from "@/components/ui/scroll-link"
+import Image from 'next/image'
 
 
 export function Footer() {
     return (
         <footer className="bg-gradient-to-r from-blue-500 to-blue-700 text-white">
-            <div className="container mx-auto px-4 py-12">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="px-8 py-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="space-y-4">
-                        <h3 className="text-lg font-semibold">About Versaa Tech</h3>
+                        <Link href="/">
+                            <Image src="/images/versaatech-logo.png" alt="Versaa Tech Logo" width={150} height={50} />
+                        </Link>
                         <p className="text-sm text-gray-300">
-                            Versaa Tech delivers innovative human capital solutions to help organizations attract, develop, and retain top talent.
+                            Versaa Tech is a knowledge-driven organization built on a foundation of deep expertise. Our core strengths exist in our comprehensive understanding of job trends, actionable market insights, and extensive experience, which enable us to deliver exceptional value.
                         </p>
                     </div>
                     <div className="space-y-4">
@@ -28,7 +31,7 @@ export function Footer() {
                                 { name: 'Contact', href: '#contact', icon: Phone },
                             ].map((item) => (
                                 <li key={item.name}>
-                                    <ScrollLink href={item.href} className="text-sm text-gray-300 hover:text-white transition-colors flex items-center gap-2">
+                                    <ScrollLink href={item.href} className="text-sm text-gray-300 hover:text-blue-200 transition-colors flex items-center gap-2">
                                         {React.createElement(item.icon, { size: 14 })}
                                         {item.name}
                                     </ScrollLink>
@@ -39,25 +42,18 @@ export function Footer() {
                     <div className="space-y-4">
                         <h3 className="text-lg font-semibold">Contact Us</h3>
                         <p className="text-sm text-gray-300">
-                            123 Business Street<br />
-                            City, State 12345<br />
-                            contact@versaatech.com<br />
-                            (123) 456-7890
+                            <span className="block">123 Main Street</span>
+                            <span className="pb-2 block">Anytown, CA 12345</span>
+                            <a href="mailto:info@versaatech.com" className="hover:text-blue-200 pb-2 block">info@versaatech.com</a>
+                            <a href="tel:+15551234567" className="hover:text-blue-200 block">+1 (555) 123-4567</a>
                         </p>
                     </div>
                 </div>
                 <Separator className="my-8 bg-white/20" />
-                <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-                    <p className="text-sm text-gray-300">
+                <div className="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0">
+                    <p className="text-sm text-gray-300 text-center">
                         &copy; {new Date().getFullYear()} Versaa Tech. All rights reserved.
                     </p>
-                    <div className="flex space-x-4">
-                        {[Facebook, Twitter, LinkedIn, Instagram].map((Icon, index) => (
-                            <Link key={index} href="#" className="text-gray-300 hover:text-white transition-colors">
-                                <Icon size={20} />
-                            </Link>
-                        ))}
-                    </div>
                 </div>
             </div>
         </footer>

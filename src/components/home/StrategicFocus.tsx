@@ -11,7 +11,7 @@ const regions = [
         initiatives: [
             "Tech startup ecosystem development",
             "Infrastructure project staffing",
-            "Healthcare sector expansion",
+            "Sustainable energy projects",
             "Educational technology initiatives"
         ]
     },
@@ -40,8 +40,8 @@ const regions = [
         description: "Innovation-driven opportunities across multiple sectors",
         initiatives: [
             "Tech sector expansion",
-            "Healthcare innovation",
-            "Sustainable energy projects",
+            "Financial Services Innovation",
+            "Manufacturing and Automotive",
             "Digital transformation services"
         ]
     }
@@ -56,7 +56,7 @@ export function StrategicFocus() {
             <div className="container mx-auto px-4">
                 {/* Regions Section */}
                 <div>
-                    <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent mb-8 text-center">Regions We Operate In</h2>
+                    <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent mb-8 text-center">Regions We Serve</h2>
                     <div className="bg-white rounded-2xl shadow-xl">
                         <div className="flex flex-col">
                             {/* Mobile Dropdown */}

@@ -10,7 +10,7 @@ import { Contact } from "@/components/home/Contact";
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
-      <main className="flex-grow pt-16 md:pt-20 bg-[#ccffff]">
+      <main className="bg-[#ccffff]">
         <Hero />
         <section id="overview">
           <Overview />

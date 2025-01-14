@@ -16,23 +16,6 @@ const cardHoverVariant = {
 
 const contactInfo = [
     {
-        icon: Mail,
-        title: "Email",
-        description: "",
-        content: "info@VersaaTech.com",
-        link: "mailto:info@versaatech.com"
-    },
-    {
-        icon: Phone,
-        title: "Phone",
-        description: "",
-        content: [
-            { label: "US", number: "+1 (284) 836-9378" },
-            { label: "UAE", number: "+971 7 426 2738" },
-            { label: "Kenya", number: "+254 07 888 71946" }
-        ]
-    },
-    {
         icon: MapPin,
         title: "Global Locations",
         description: "",
@@ -40,7 +23,8 @@ const contactInfo = [
             "Michigan, USA",
             "Dubai, UAE",
             "Nairobi, Kenya"
-        ]
+        ],
+        iconColor: "text-green-600"
     }
 ]
 
@@ -58,71 +42,95 @@ export function Contact() {
                     <motion.h2
                         className="text-3xl font-bold text-center mb-12 text-blue-600"
                     >
-                        <div className="flex items-center justify-center gap-2">
-                            <MessageSquare className="h-8 w-8" />
-                            Lets Have a Conversation ...
-                        </div>
+                        Lets Have a Conversation ...
                     </motion.h2>
 
-                    <motion.div
-                        className="grid grid-cols-1 sm:grid-cols-3 gap-6"
-                    >
-                        {contactInfo.map((info) => (
+                    <div className="flex justify-center">
+                        <motion.div
+                            className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl"
+                        >
                             <motion.div
-                                key={info.title}
                                 variants={cardHoverVariant}
                                 whileHover="hover"
-                                className="w-full"
+                                className="max-w-md mx-auto w-full"
                             >
-                                <Card className="rounded-2xl bg-gradient-to-r from-white to-gray-100 h-full">
-                                    <CardContent className="p-6">
-                                        <div className="flex flex-col h-full space-y-4">
-                                            <div className="flex items-center space-x-3">
-                                                <div className="p-2 bg-[#08314e]/10 rounded-lg">
-                                                    <info.icon className="h-6 w-6 text-blue-600" />
+                                <Card className="rounded-2xl bg-gradient-to-r from-white to-gray-50 h-full">
+                                    <CardContent className="p-7">
+                                        <div className="flex flex-col h-full space-y-3">
+                                            <div className="flex items-center space-x-3 mb-3">
+                                                <div className="p-2.5 bg-[#08314e]/10 rounded-lg">
+                                                    <MessageSquare className="h-7 w-7 text-blue-600" />
                                                 </div>
-                                                <h3 className="font-semibold text-gray-900">
-                                                    {info.title}
+                                                <h3 className="font-semibold text-gray-900 text-lg">
+                                                    Contact
                                                 </h3>
                                             </div>
 
-                                            <p className="text-gray-600 text-base">
-                                                {info.description}
-                                            </p>
-
-                                            {Array.isArray(info.content) ? (
-                                                <div className="space-y-2">
-                                                    {info.content.map((item, idx) => (
-                                                        typeof item === 'object' && item !== null && 'label' in item && 'number' in item ? (
-                                                            <div key={idx}>
-                                                                <a
-                                                                    href={`tel:${item.number}`}
-                                                                    className="text-gray-600 hover:text-gray-600/80 text-base transition-colors block"
-                                                                >
-                                                                    {`${item.label}: ${item.number}`}
-                                                                </a>
-                                                            </div>
-                                                        ) : (
-                                                            <p key={idx} className="text-gray-600 text-base">
-                                                                {item}
-                                                            </p>
-                                                        )
-                                                    ))}
-                                                </div>
-                                            ) : (
+                                            <div className="flex items-center space-x-2.5">
+                                                <Mail className="h-5 w-5 text-red-500" />
                                                 <a
-                                                    href={info.link}
-                                                    className="text-blue-600 hover:text-blue-600/80 text-base transition-colors"
+                                                    href="mailto:info@versaatech.com"
+                                                    className="text-gray-600 hover:text-gray-600/80 transition-colors"
                                                 >
-                                                    {info.content}
+                                                    info@VersaaTech.com
                                                 </a>
-                                            )}
+                                            </div>
+                                            <div className="flex items-center space-x-2.5">
+                                                <Phone className="h-5 w-5 text-blue-500" />
+                                                <a
+                                                    href="tel:+12848369378"
+                                                    className="text-gray-600 hover:text-gray-600/80 transition-colors"
+                                                >
+                                                    +1 (284) 836-9378
+                                                </a>
+                                            </div>
                                         </div>
                                     </CardContent>
                                 </Card>
                             </motion.div>
-                        ))}
-                    </motion.div>
+                            {contactInfo.map((info) => (
+                                <motion.div
+                                    key={info.title}
+                                    variants={cardHoverVariant}
+                                    whileHover="hover"
+                                    className="max-w-md mx-auto w-full"
+                                >
+                                    <Card className="rounded-2xl bg-gradient-to-r from-white to-gray-50 h-full">
+                                        <CardContent className="p-7">
+                                            <div className="flex flex-col h-full space-y-3">
+                                                <div className="flex items-center space-x-3">
+                                                    <div className="p-2.5 bg-[#08314e]/10 rounded-lg">
+                                                        <info.icon className={`h-7 w-7 ${info.iconColor}`} />
+                                                    </div>
+                                                    <h3 className="font-semibold text-gray-900 text-lg">
+                                                        {info.title}
+                                                    </h3>
+                                                </div>
+
+                                                <p className="text-gray-600">
+                                                    {info.description}
+                                                </p>
+
+                                                {Array.isArray(info.content) ? (
+                                                    <div className="space-y-2.5">
+                                                        {info.content.map((item, idx) => (
+                                                            <p key={idx} className="text-gray-600">
+                                                                {item}
+                                                            </p>
+                                                        ))}
+                                                    </div>
+                                                ) : (
+                                                    <p className="text-gray-600">
+                                                        {info.content}
+                                                    </p>
+                                                )}
+                                            </div>
+                                        </CardContent>
+                                    </Card>
+                                </motion.div>
+                            ))}
+                        </motion.div>
+                    </div>
                 </motion.div>
             </div>
         </section>

@@ -13,7 +13,8 @@ const regions = [
             "Infrastructure project staffing",
             "Sustainable energy projects",
             "Educational technology initiatives"
-        ]
+        ],
+        color: "bg-green-600"
     },
     {
         name: "Middle East",
@@ -23,7 +24,8 @@ const regions = [
             "Renewable energy projects",
             "FinTech development",
             "Healthcare modernization"
-        ]
+        ],
+        color: "bg-yellow-600"
     },
     {
         name: "Mexico",
@@ -33,7 +35,8 @@ const regions = [
             "IT services expansion",
             "Automotive sector growth",
             "Digital transformation projects"
-        ]
+        ],
+        color: "bg-red-600"
     },
     {
         name: "USA",
@@ -43,7 +46,8 @@ const regions = [
             "Financial Services Innovation",
             "Manufacturing and Automotive",
             "Digital transformation services"
-        ]
+        ],
+        color: "bg-purple-600"
     }
 ]
 
@@ -63,7 +67,7 @@ export function StrategicFocus() {
                             <div className="lg:hidden">
                                 <button 
                                     onClick={() => setIsOpen(!isOpen)}
-                                    className="w-full flex items-center justify-between p-4 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-t-2xl"
+                                    className={`w-full flex items-center justify-between p-4 text-white rounded-t-2xl ${regions[activeRegion].color}`}
                                 >
                                     <div className="flex items-center">
                                         <Globe className="w-5 h-5 mr-3" />
@@ -74,7 +78,7 @@ export function StrategicFocus() {
                                 
                                 {/* Dropdown Menu */}
                                 {isOpen && (
-                                    <div className="absolute z-10 w-full bg-white shadow-lg border-t border-gray-100">
+                                    <div className="absolute z-10 w-full bg-white shadow-lg border-t border-gray-100" >
                                         {regions.map((region, index) => (
                                             <button
                                                 key={index}
@@ -84,13 +88,13 @@ export function StrategicFocus() {
                                                 }}
                                                 className={`w-full text-left p-4 flex items-center
                                                     ${index === activeRegion 
-                                                        ? 'bg-gray-50 text-blue-600' 
-                                                        : 'text-gray-700 hover:bg-gray-50'
+                                                        ? `bg-gray-50 ${region.color.replace('bg-', 'text-')}` 
+                                                        : `${region.color.replace('bg-', 'text-')} hover:bg-gray-50`
                                                     }
                                                     ${index !== regions.length - 1 ? 'border-b border-gray-100' : ''}
                                                 `}
                                             >
-                                                <Globe className="w-5 h-5 mr-3" />
+                                                <Globe className={`w-5 h-5 mr-3 ${region.color.replace('bg-', 'text-')}`} />
                                                 <span className="font-semibold">{region.name}</span>
                                             </button>
                                         ))}
@@ -99,24 +103,20 @@ export function StrategicFocus() {
                             </div>
 
                             {/* Desktop Tabs */}
-                            <div className="hidden lg:flex bg-blue-700 rounded-t-2xl">
+                            <div className="hidden lg:flex rounded-t-2xl">
                                 {regions.map((region, index) => (
                                     <button
                                         key={index}
                                         onClick={() => setActiveRegion(index)}
                                         className={`flex-1 flex items-center justify-center px-6 py-4 transition-colors
                                             ${index === activeRegion 
-                                                ? 'bg-white text-blue-600 rounded-t-lg' 
-                                                : 'text-white hover:bg-white hover:bg-opacity-10 rounded-t-2xl'
+                                                ? `${region.color} text-white ring-2 ring-blue-300 rounded-t-2xl`
+                                                : `text-white hover:brightness-110 rounded-t-2xl ${region.color}`
                                             }
                                             ${index !== regions.length - 1 ? 'border-r border-blue-700/20' : ''}
                                         `}
                                     >
-                                        <Globe 
-                                            className={`w-5 h-5 mr-3 
-                                                ${index === activeRegion ? 'text-blue-600' : 'text-white'}
-                                            `} 
-                                        />
+                                        <Globe className="w-5 h-5 mr-3 text-white" />
                                         <span className="font-semibold">{region.name}</span>
                                     </button>
                                 ))}
@@ -131,7 +131,7 @@ export function StrategicFocus() {
                                     transition={{ duration: 0.3 }}
                                     className="h-full"
                                 >
-                                    <h4 className="text-xl font-semibold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent mb-4">
+                                    <h4 className={`text-xl font-semibold bg-clip-text text-transparent mb-4 ${regions[activeRegion].color}`}>
                                         {regions[activeRegion].name}
                                     </h4>
                                     <p className="text-gray-600 mb-6">

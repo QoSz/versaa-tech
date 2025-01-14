@@ -10,7 +10,7 @@ export function Footer() {
     return (
         <footer className="bg-gradient-to-r from-blue-500 to-blue-700 text-white">
             <div className="px-8 py-8">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div className="space-y-4">
                         <Link href="/">
                             <Image src="/images/versaatech-logo.png" alt="Versaa Tech Logo" width={150} height={50} />

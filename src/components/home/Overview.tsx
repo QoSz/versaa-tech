@@ -50,7 +50,9 @@ export function Overview() {
                     >
                         <CardContent className="p-6 space-y-6">
                             <div className="flex items-center gap-4 mb-4">
-                                <service.icon className="w-8 h-8 text-white/90" strokeWidth={1.5} />
+                                {service.title === "Technical Expertise" && <LineChart className="w-8 h-8 text-red-500" strokeWidth={1.5} />}
+                                {service.title === "Why Choose Us" && <Users2 className="w-8 h-8 text-green-500" strokeWidth={1.5} />}
+                                {service.title === "Our Services" && <Briefcase className="w-8 h-8 text-yellow-500" strokeWidth={1.5} />}
                                 <h3 className="text-2xl font-semibold">{service.title}</h3>
                             </div>
                             <div>

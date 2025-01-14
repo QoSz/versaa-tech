@@ -3,7 +3,6 @@
 import * as React from "react"
 import Link from "next/link"
 import { Menu, LayoutGrid, Building2, Lightbulb, Info, Users, ChevronDown, Building, Phone } from 'lucide-react'
-import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { ScrollLink } from "@/components/ui/scroll-link"
 import {
@@ -49,51 +48,48 @@ export function Navigation() {
         <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
             <div className="p-4 md:p-6">
                 <nav className="flex items-center justify-between">
-                    <Link href="/" className="text-2xl font-bold tracking-tighter hover:opacity-80 transition-opacity bg-gradient-to-r from-cyan-400 to-blue-600 bg-clip-text text-transparent flex items-center gap-2">
-                        <div style={{ maxHeight: '40px', display: 'flex', alignItems: 'center' }}>
+                    <Link href="/" className="flex items-center">
+                        <div className="max-h-[40px] flex items-center">
                             <Image 
-                                src="/images/versaatech-logo-2.png"
+                                src="/images/versaatech-logo.png"
                                 alt="Versaa Tech Logo"
-                                width={70}
-                                height={70}
-                                className="dark:invert"
-                                style={{ objectFit: 'contain', maxHeight: '70px' }}
+                                width={90}
+                                height={90}
+                                className="dark:invert max-h-[75px] md:max-h-[100px] object-contain"
                             />
                         </div>
-                        Versaa Tech
+                        {/* Versaa Tech */}
                     </Link>
                     <div className="hidden md:flex space-x-6">
                         {navItems.map((item) => (
                             <ScrollLink
                                 key={item.title}
                                 href={item.href}
-                                className={cn(
-                                    "text-sm font-medium transition-colors flex items-center gap-2",
+                                className={`text-sm font-medium transition-colors flex items-center gap-2 relative group ${
                                     isScrolled
-                                        ? "text-transparent bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text hover:opacity-90"
-                                        : "text-transparent bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text hover:opacity-80"
-                                )}
+                                        ? "text-black hover:opacity-90"
+                                        : "text-black hover:opacity-80"
+                                }`}
                             >
                                 {React.createElement(item.icon, { 
                                     size: 16,
-                                    className: "stroke-blue-600"
+                                    className: "stroke-black"
                                 })}
-                                {item.title}
+                                <span className="relative z-10">
+                                    {item.title}
+                                </span>
+                                <span className="absolute bottom-[-5px] left-0 w-0 h-[2px] bg-gradient-to-r from-blue-500 to-blue-700 group-hover:w-full transition-all duration-300"></span>
                             </ScrollLink>
                         ))}
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                                 <Button 
                                     variant="ghost" 
-                                    className={cn(
-                                        "text-sm font-medium transition-opacity flex items-center gap-2 p-0 h-auto bg-transparent",
-                                        "hover:bg-transparent hover:opacity-80",
-                                        "text-transparent bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text"
-                                    )}
+                                    className={`text-sm font-medium transition-opacity flex items-center gap-2 p-0 h-auto bg-transparent hover:bg-transparent hover:opacity-80 text-black`}
                                 >
-                                    <Info className="stroke-blue-600" />
+                                    <Info className="stroke-black" />
                                     About
-                                    <ChevronDown className="stroke-blue-600" />
+                                    <ChevronDown className="stroke-black" />
                                 </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
@@ -103,14 +99,15 @@ export function Navigation() {
                                         href={item.href}
                                         className="w-full"
                                     >
-                                        <DropdownMenuItem className="flex items-center gap-2 cursor-pointer">
+                                        <DropdownMenuItem className="flex items-center gap-2 cursor-pointer relative group">
                                             {React.createElement(item.icon, { 
                                                 size: 16, 
-                                                className: "stroke-blue-600" 
+                                                className: "stroke-black" 
                                             })}
-                                            <span className="text-transparent bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text group-hover:opacity-80 transition-opacity">
+                                            <span className="text-black group-hover:opacity-80 transition-opacity relative z-10">
                                                 {item.title}
                                             </span>
+                                            <span className="absolute bottom-[0px] left-0 w-0 h-[2px] bg-gradient-to-r from-blue-500 to-blue-700 group-hover:w-full transition-all duration-300"></span>
                                         </DropdownMenuItem>
                                     </ScrollLink>
                                 ))}
@@ -120,7 +117,7 @@ export function Navigation() {
                     <Sheet>
                         <SheetTrigger asChild>
                             <Button variant="ghost" className="md:hidden p-0 hover:bg-transparent" size="icon">
-                                <Menu className="h-6 w-6 stroke-blue-600" />
+                                <Menu className="h-6 w-6 stroke-black" />
                                 <span className="sr-only">Toggle menu</span>
                             </Button>
                         </SheetTrigger>
@@ -131,44 +128,49 @@ export function Navigation() {
                                     Access all sections of our website
                                 </SheetDescription>
                             </SheetHeader>
-                            <nav className="flex flex-col space-y-4 mt-6">
-                                <Link href="/" className="text-2xl font-bold tracking-tighter hover:opacity-80 transition-opacity mb-6 bg-gradient-to-r from-cyan-400 to-blue-600 bg-clip-text text-transparent flex items-center gap-2">
-                                    <div style={{ maxHeight: '40px', display: 'flex', alignItems: 'center' }}>
+                            <nav className="flex flex-col space-y-4 mt-4">
+                                <Link href="/" className="flex items-center">
+                                    <div className="max-h-[100px] flex items-center">
                                         <Image 
-                                            src="/images/versaatech-logo-2.png"
+                                            src="/images/versaatech-logo.png"
                                             alt="Versaa Tech Logo"
-                                            width={60}
-                                            height={60}
-                                            className="dark:invert"
-                                            style={{ objectFit: 'contain', maxHeight: '70px' }}
+                                            width={100}
+                                            height={100}
+                                            className="dark:invert max-h-[100px] object-contain"
                                         />
                                     </div>
-                                    Versaa Tech
+                                    {/* Versaa Tech */}
                                 </Link>
                                 {navItems.map((item) => (
                                     <ScrollLink
                                         key={item.title}
                                         href={item.href}
-                                        className="text-md font-medium flex items-center gap-2 text-transparent bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text hover:opacity-90"
+                                        className="text-md font-medium flex items-center gap-2 text-black hover:opacity-90 relative group"
                                     >
                                         {React.createElement(item.icon, { 
                                             size: 20,
-                                            className: "stroke-blue-600"
+                                            className: "stroke-black"
                                         })}
-                                        {item.title}
+                                        <span className="relative z-10">
+                                            {item.title}
+                                        </span>
+                                        <span className="absolute bottom-[-1px] left-0 w-0 h-[2px] bg-gradient-to-r from-blue-500 to-blue-700 group-hover:w-full transition-all duration-300"></span>
                                     </ScrollLink>
                                 ))}
                                 {aboutItems.map((item) => (
                                     <ScrollLink
                                         key={item.title}
                                         href={item.href}
-                                        className="text-lg font-medium flex items-center gap-2 text-transparent bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text hover:opacity-90"
+                                        className="text-lg font-medium flex items-center gap-2 text-black hover:opacity-90 relative group"
                                     >
                                         {React.createElement(item.icon, { 
                                             size: 20,
-                                            className: "stroke-blue-600"
+                                            className: "stroke-black"
                                         })}
-                                        {item.title}
+                                        <span className="relative z-10">
+                                            {item.title}
+                                        </span>
+                                        <span className="absolute bottom-[-1px] left-0 w-0 h-[2px] bg-gradient-to-r from-blue-500 to-blue-700 group-hover:w-full transition-all duration-300"></span>
                                     </ScrollLink>
                                 ))}
                             </nav>

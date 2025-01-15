@@ -53,7 +53,7 @@ export function About() {
                     {highlights.map((item, index) => {
                         const Icon = item.icon
                         return (
-                            <Card key={index} className="bg-white rounded-2xl hover:shadow-lg transition-shadow bg-gradient-to-r from-white to-gray-50 h-full">
+                            <Card key={index} className="rounded-2xl hover:shadow-lg transition-shadow bg-gradient-to-r from-white to-gray-50 h-full">
                                 <CardContent className="p-6">
                                     <Icon className={`w-12 h-12 mb-4 ${item.color}`} />
                                     <h3 className="text-xl font-semibold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent mb-3">{item.title}</h3>

@@ -42,10 +42,9 @@ export function Footer() {
                     <div className="space-y-4">
                         <h3 className="text-lg font-semibold">Contact Us</h3>
                         <p className="text-sm text-gray-300">
-                            <span className="block">123 Main Street</span>
-                            <span className="pb-2 block">Anytown, CA 12345</span>
+                            <span className="block">Meydan Grandstand, 6th floor, Meydan Road</span>
+                            <span className="pb-2 block">Nad Al Sheba, Dubai, U.A.E</span>
                             <a href="mailto:info@versaatech.com" className="hover:text-blue-200 pb-2 block">info@versaatech.com</a>
-                            <a href="tel:+15551234567" className="hover:text-blue-200 block">+1 (555) 123-4567</a>
                         </p>
                     </div>
                 </div>

@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin, MessageSquare } from 'lucide-react'
+import { Mail, MapPin, MessageSquare } from 'lucide-react'
 import { Card, CardContent } from "@/components/ui/card"
 
 const cardHoverVariant = {
@@ -56,7 +56,7 @@ export function Contact() {
                             >
                                 <Card className="rounded-2xl bg-gradient-to-r from-white to-gray-50 h-full">
                                     <CardContent className="p-7">
-                                        <div className="flex flex-col h-full space-y-3">
+                                        <div className="flex flex-col">
                                             <div className="flex items-center space-x-3 mb-3">
                                                 <div className="p-2.5 bg-[#08314e]/10 rounded-lg">
                                                     <MessageSquare className="h-7 w-7 text-blue-600" />
@@ -75,15 +75,6 @@ export function Contact() {
                                                     info@VersaaTech.com
                                                 </a>
                                             </div>
-                                            <div className="flex items-center space-x-2.5">
-                                                <Phone className="h-5 w-5 text-blue-500" />
-                                                <a
-                                                    href="tel:+12848369378"
-                                                    className="text-gray-600 hover:text-gray-600/80 transition-colors"
-                                                >
-                                                    +1 (284) 836-9378
-                                                </a>
-                                            </div>
                                         </div>
                                     </CardContent>
                                 </Card>
@@ -97,8 +88,8 @@ export function Contact() {
                                 >
                                     <Card className="rounded-2xl bg-gradient-to-r from-white to-gray-50 h-full">
                                         <CardContent className="p-7">
-                                            <div className="flex flex-col h-full space-y-3">
-                                                <div className="flex items-center space-x-3">
+                                            <div className="flex flex-col">
+                                                <div className="flex items-center space-x-3 mb-3">
                                                     <div className="p-2.5 bg-[#08314e]/10 rounded-lg">
                                                         <info.icon className={`h-7 w-7 ${info.iconColor}`} />
                                                     </div>
@@ -111,19 +102,13 @@ export function Contact() {
                                                     {info.description}
                                                 </p>
 
-                                                {Array.isArray(info.content) ? (
-                                                    <div className="space-y-2.5">
-                                                        {info.content.map((item, idx) => (
-                                                            <p key={idx} className="text-gray-600">
-                                                                {item}
-                                                            </p>
-                                                        ))}
-                                                    </div>
-                                                ) : (
-                                                    <p className="text-gray-600">
-                                                        {info.content}
-                                                    </p>
-                                                )}
+                                                
+                                                    {info.content.map((item, idx) => (
+                                                        <p key={idx} className="text-gray-600 mb-1">
+                                                            {item}
+                                                        </p>
+                                                    ))}
+                                                
                                             </div>
                                         </CardContent>
                                     </Card>

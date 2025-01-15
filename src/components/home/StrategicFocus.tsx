@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Globe, ChevronDown } from 'lucide-react'
+import { Globe } from 'lucide-react'
 
 const regions = [
     {
@@ -53,53 +53,31 @@ const regions = [
 
 export function StrategicFocus() {
     const [activeRegion, setActiveRegion] = useState(0)
-    const [isOpen, setIsOpen] = useState(false)
 
     return (
         <section className="py-12">
             <div className="container mx-auto px-4">
-                {/* Regions Section */}
                 <div>
                     <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent mb-8 text-center">Regions We Serve</h2>
                     <div className="bg-white rounded-2xl shadow-xl">
                         <div className="flex flex-col">
-                            {/* Mobile Dropdown */}
-                            <div className="lg:hidden">
-                                <button 
-                                    onClick={() => setIsOpen(!isOpen)}
-                                    className={`w-full flex items-center justify-between p-4 text-white rounded-t-2xl ${regions[activeRegion].color}`}
-                                >
-                                    <div className="flex items-center">
-                                        <Globe className="w-5 h-5 mr-3" />
-                                        <span className="font-semibold">{regions[activeRegion].name}</span>
-                                    </div>
-                                    <ChevronDown className={`w-5 h-5 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
-                                </button>
-                                
-                                {/* Dropdown Menu */}
-                                {isOpen && (
-                                    <div className="absolute z-10 w-full bg-white shadow-lg border-t border-gray-100" >
-                                        {regions.map((region, index) => (
-                                            <button
-                                                key={index}
-                                                onClick={() => {
-                                                    setActiveRegion(index)
-                                                    setIsOpen(false)
-                                                }}
-                                                className={`w-full text-left p-4 flex items-center
-                                                    ${index === activeRegion 
-                                                        ? `bg-gray-50 ${region.color.replace('bg-', 'text-')}` 
-                                                        : `${region.color.replace('bg-', 'text-')} hover:bg-gray-50`
-                                                    }
-                                                    ${index !== regions.length - 1 ? 'border-b border-gray-100' : ''}
-                                                `}
-                                            >
-                                                <Globe className={`w-5 h-5 mr-3 ${region.color.replace('bg-', 'text-')}`} />
-                                                <span className="font-semibold">{region.name}</span>
-                                            </button>
-                                        ))}
-                                    </div>
-                                )}
+                            {/* Mobile Region Buttons */}
+                            <div className="lg:hidden grid grid-cols-2 gap-3 p-4">
+                                {regions.map((region, index) => (
+                                    <button
+                                        key={index}
+                                        onClick={() => setActiveRegion(index)}
+                                        className={`flex flex-row items-center justify-center p-4 rounded-xl transition-all text-center
+                                            ${index === activeRegion 
+                                                ? `${region.color} text-white shadow-lg` 
+                                                : `border-2 ${region.color.replace('bg-', 'border-')} ${region.color.replace('bg-', 'text-')} hover:bg-gray-100`
+                                            }
+                                        `}
+                                    >
+                                        <Globe className="w-5 h-5 mr-2" />
+                                        <span className="font-semibold text-sm">{region.name}</span>
+                                    </button>
+                                ))}
                             </div>
 
                             {/* Desktop Tabs */}
@@ -111,12 +89,12 @@ export function StrategicFocus() {
                                         className={`flex-1 flex items-center justify-center px-6 py-4 transition-colors
                                             ${index === activeRegion 
                                                 ? `${region.color} text-white ring-2 ring-blue-300 rounded-t-2xl`
-                                                : `text-white hover:brightness-110 rounded-t-2xl ${region.color}`
+                                                : `hover:bg-opacity-90 rounded-t-2xl ${region.color} text-white`
                                             }
                                             ${index !== regions.length - 1 ? 'border-r border-blue-700/20' : ''}
                                         `}
                                     >
-                                        <Globe className="w-5 h-5 mr-3 text-white" />
+                                        <Globe className="w-5 h-5 mr-3" />
                                         <span className="font-semibold">{region.name}</span>
                                     </button>
                                 ))}

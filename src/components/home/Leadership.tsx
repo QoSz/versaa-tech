@@ -49,14 +49,13 @@ const GlobalAdvisorsIcon = () => (
 export function Team() {
     return (
         <section className="py-12 px-4 md:px-8">
-            {/* Leadership Team */}
             <div className="text-center mb-12">
                 <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent mb-4">Our Leadership</h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            <div className="flex flex-col lg:flex-row gap-8 max-w-6xl mx-auto">
                 {/* Description Card */}
-                <Card className={`${cardStyles} md:col-span-2 lg:col-span-1`}>
+                <Card className={`${cardStyles} lg:w-1/2`}>
                     <CardContent className="p-6">
                         <p className="text-gray-600">
                             Versaa Tech is led by a team of visionary leaders dedicated to driving innovation, excellence, and sustainable growth in the area of Human Capital Management. Committed to empowering human capital, our leadership team and our global advisors focus on job trends, professional development, skill enhancement, and creating tailored solutions for growth.
@@ -67,56 +66,54 @@ export function Team() {
                     </CardContent>
                 </Card>
 
-                {/* Team Members Grid */}
-                <div className="md:col-span-2 lg:col-span-1">
-                    <div className="h-full">
-                        {/* On larger screens (lg+): vertical layout with even spacing */}
-                        <div className="hidden lg:flex lg:flex-col lg:justify-between lg:h-full">
-                            {teamMembers.map((member) => (
-                                <Card key={member.name} className={cardStyles}>
-                                    <CardContent className="p-6 flex flex-col items-center text-center">
-                                        <h3 className="text-xl font-semibold text-gray-800 mb-2">{member.name}</h3>
-                                        <p className="text-blue-600">{member.role}</p>
-                                    </CardContent>
-                                </Card>
-                            ))}
-                            
-                            <Card className={`${cardStyles}`}>
+                {/* Team Members Section */}
+                <div className="lg:w-1/2">
+                    {/* Desktop Layout */}
+                    <div className="hidden lg:flex lg:flex-col gap-8">
+                        {teamMembers.map((member) => (
+                            <Card key={member.name} className={cardStyles}>
                                 <CardContent className="p-6 flex flex-col items-center text-center">
-                                    <GlobalAdvisorsIcon />
-                                    <h3 className="text-xl font-semibold text-gray-800 mb-2">{globalAdvisors.name}</h3>
-                                    <div>
-                                        <p className="text-gray-600">
-                                            {globalAdvisors.role}
-                                        </p>
-                                    </div>
+                                    <h3 className="text-xl font-semibold text-gray-800 mb-2">{member.name}</h3>
+                                    <p className="text-blue-600">{member.role}</p>
                                 </CardContent>
                             </Card>
-                        </div>
+                        ))}
+                        
+                        <Card className={cardStyles}>
+                            <CardContent className="p-6 flex flex-col items-center text-center">
+                                <GlobalAdvisorsIcon />
+                                <h3 className="text-xl font-semibold text-gray-800 mb-2">{globalAdvisors.name}</h3>
+                                <div>
+                                    <p className="text-gray-600">
+                                        {globalAdvisors.role}
+                                    </p>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    </div>
 
-                        {/* On medium screens: 2-column grid layout with gaps */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:hidden">
-                            {teamMembers.map((member) => (
-                                <Card key={member.name} className={cardStyles}>
-                                    <CardContent className="p-6 flex flex-col items-center text-center">
-                                        <h3 className="text-xl font-semibold text-gray-800 mb-2">{member.name}</h3>
-                                        <p className="text-blue-600">{member.role}</p>
-                                    </CardContent>
-                                </Card>
-                            ))}
-                            
-                            <Card className={`${cardStyles} sm:col-span-2`}>
+                    {/* Mobile/Tablet Layout */}
+                    <div className="flex flex-col sm:grid sm:grid-cols-2 gap-8 lg:hidden">
+                        {teamMembers.map((member) => (
+                            <Card key={member.name} className={cardStyles}>
                                 <CardContent className="p-6 flex flex-col items-center text-center">
-                                    <GlobalAdvisorsIcon />
-                                    <h3 className="text-xl font-semibold text-gray-800 mb-2">{globalAdvisors.name}</h3>
-                                    <div>
-                                        <p className="text-gray-600">
-                                            {globalAdvisors.role}
-                                        </p>
-                                    </div>
+                                    <h3 className="text-xl font-semibold text-gray-800 mb-2">{member.name}</h3>
+                                    <p className="text-blue-600">{member.role}</p>
                                 </CardContent>
                             </Card>
-                        </div>
+                        ))}
+                        
+                        <Card className={`${cardStyles} sm:col-span-2`}>
+                            <CardContent className="p-6 flex flex-col items-center text-center">
+                                <GlobalAdvisorsIcon />
+                                <h3 className="text-xl font-semibold text-gray-800 mb-2">{globalAdvisors.name}</h3>
+                                <div>
+                                    <p className="text-gray-600">
+                                        {globalAdvisors.role}
+                                    </p>
+                                </div>
+                            </CardContent>
+                        </Card>
                     </div>
                 </div>
             </div>

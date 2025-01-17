@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Mail, MapPin, MessageSquare } from 'lucide-react'
+import { Mail, MessageSquare } from 'lucide-react'
 import { Card, CardContent } from "@/components/ui/card"
 
 const cardHoverVariant = {
@@ -14,19 +14,6 @@ const cardHoverVariant = {
     }
 }
 
-const contactInfo = [
-    {
-        icon: MapPin,
-        title: "Global Locations",
-        description: "",
-        content: [
-            "Michigan, USA",
-            "Dubai, UAE",
-            "Nairobi, Kenya"
-        ],
-        iconColor: "text-green-600"
-    }
-]
 
 export function Contact() {
     return (
@@ -47,73 +34,28 @@ export function Contact() {
 
                     <div className="flex justify-center">
                         <motion.div
-                            className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl"
+                            className="max-w-md mx-auto w-full"
+                            variants={cardHoverVariant}
+                            whileHover="hover"
                         >
-                            <motion.div
-                                variants={cardHoverVariant}
-                                whileHover="hover"
-                                className="max-w-md mx-auto w-full"
-                            >
-                                <Card className="rounded-2xl bg-gradient-to-r from-white to-gray-50 h-full">
-                                    <CardContent className="p-7">
-                                        <div className="flex flex-col">
-                                            <div className="flex items-center space-x-3 mb-3">
-                                                <div className="p-2.5 bg-[#08314e]/10 rounded-lg">
-                                                    <MessageSquare className="h-7 w-7 text-blue-600" />
-                                                </div>
-                                                <h3 className="font-semibold text-gray-900 text-lg">
-                                                    Contact
-                                                </h3>
-                                            </div>
-
-                                            <div className="flex items-center space-x-2.5">
-                                                <Mail className="h-5 w-5 text-red-500" />
-                                                <a
-                                                    href="mailto:info@versaatech.com"
-                                                    className="text-gray-600 hover:text-gray-600/80 transition-colors"
-                                                >
-                                                    info@VersaaTech.com
-                                                </a>
-                                            </div>
+                            <Card className="rounded-2xl shadow-md h-full">
+                                <CardContent className="p-7 flex flex-col items-center">
+                                    
+                                        <div className="p-2.5 bg-[#08314e]/10 rounded-full mb-3">
+                                            <Mail className="h-7 w-7 text-red-500" />
                                         </div>
-                                    </CardContent>
-                                </Card>
-                            </motion.div>
-                            {contactInfo.map((info) => (
-                                <motion.div
-                                    key={info.title}
-                                    variants={cardHoverVariant}
-                                    whileHover="hover"
-                                    className="max-w-md mx-auto w-full"
-                                >
-                                    <Card className="rounded-2xl bg-gradient-to-r from-white to-gray-50 h-full">
-                                        <CardContent className="p-7">
-                                            <div className="flex flex-col">
-                                                <div className="flex items-center space-x-3 mb-3">
-                                                    <div className="p-2.5 bg-[#08314e]/10 rounded-lg">
-                                                        <info.icon className={`h-7 w-7 ${info.iconColor}`} />
-                                                    </div>
-                                                    <h3 className="font-semibold text-gray-900 text-lg">
-                                                        {info.title}
-                                                    </h3>
-                                                </div>
-
-                                                <p className="text-gray-600">
-                                                    {info.description}
-                                                </p>
-
-                                                
-                                                    {info.content.map((item, idx) => (
-                                                        <p key={idx} className="text-gray-600 mb-1">
-                                                            {item}
-                                                        </p>
-                                                    ))}
-                                                
-                                            </div>
-                                        </CardContent>
-                                    </Card>
-                                </motion.div>
-                            ))}
+                                        <h3 className="font-semibold text-gray-900 text-lg mb-1">
+                                            Email
+                                        </h3>
+                                    
+                                    <a
+                                        href="mailto:info@versaatech.com"
+                                        className="text-gray-600 hover:text-gray-600/80 transition-colors text-center"
+                                    >
+                                        info@VersaaTech.com
+                                    </a>
+                                </CardContent>
+                            </Card>
                         </motion.div>
                     </div>
                 </motion.div>

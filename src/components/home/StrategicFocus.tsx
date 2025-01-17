@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Globe } from 'lucide-react'
 
 const regions = [
     {
@@ -14,7 +13,6 @@ const regions = [
             "Sustainable energy projects",
             "Educational technology initiatives"
         ],
-        color: "bg-green-600"
     },
     {
         name: "Middle East",
@@ -25,7 +23,6 @@ const regions = [
             "FinTech development",
             "Healthcare modernization"
         ],
-        color: "bg-yellow-600"
     },
     {
         name: "Mexico",
@@ -36,7 +33,6 @@ const regions = [
             "Automotive sector growth",
             "Digital transformation projects"
         ],
-        color: "bg-red-600"
     },
     {
         name: "USA",
@@ -47,7 +43,6 @@ const regions = [
             "Manufacturing and Automotive",
             "Digital transformation services"
         ],
-        color: "bg-purple-600"
     }
 ]
 
@@ -59,7 +54,7 @@ export function StrategicFocus() {
             <div className="container mx-auto px-4">
                 <div>
                     <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent mb-8 text-center">Regions We Serve</h2>
-                    <div className="bg-white rounded-2xl shadow-xl">
+                    <div className="bg-white rounded-2xl shadow-md">
                         <div className="flex flex-col">
                             {/* Mobile Region Buttons */}
                             <div className="lg:hidden grid grid-cols-2 gap-3 p-4">
@@ -67,14 +62,13 @@ export function StrategicFocus() {
                                     <button
                                         key={index}
                                         onClick={() => setActiveRegion(index)}
-                                        className={`flex flex-row items-center justify-center p-4 rounded-xl transition-all text-center
-                                            ${index === activeRegion 
-                                                ? `${region.color} text-white shadow-lg` 
-                                                : `border-2 ${region.color.replace('bg-', 'border-')} ${region.color.replace('bg-', 'text-')} hover:bg-gray-100`
+                                        className={`flex flex-row items-center justify-center p-4 transition-all text-center rounded-xl
+                                            ${index === activeRegion
+                                                ? `bg-gray-200 shadow-lg text-black border-2 border-blue-600`
+                                                : `bg-gray-100 text-gray-600 hover:bg-gray-200 border-2 border-gray-300`
                                             }
                                         `}
                                     >
-                                        <Globe className="w-5 h-5 mr-2" />
                                         <span className="font-semibold text-sm">{region.name}</span>
                                     </button>
                                 ))}
@@ -87,14 +81,15 @@ export function StrategicFocus() {
                                         key={index}
                                         onClick={() => setActiveRegion(index)}
                                         className={`flex-1 flex items-center justify-center px-6 py-4 transition-colors
-                                            ${index === activeRegion 
-                                                ? `${region.color} text-white ring-2 ring-blue-300 rounded-t-2xl`
-                                                : `hover:bg-opacity-90 rounded-t-2xl ${region.color} text-white`
+                                            ${index === activeRegion
+                                                ? `bg-gray-200 text-black ring-2 ring-blue-300`
+                                                : `bg-gray-100 text-gray-600 hover:bg-gray-200`
                                             }
-                                            ${index !== regions.length - 1 ? 'border-r border-blue-700/20' : ''}
+                                            ${index === 0 ? 'rounded-tl-2xl' : ''}
+                                            ${index === regions.length - 1 ? 'rounded-tr-2xl' : ''}
+                                            ${index !== regions.length - 1 ? 'border-r border-gray-200 mr-[2px]' : ''}
                                         `}
                                     >
-                                        <Globe className="w-5 h-5 mr-3" />
                                         <span className="font-semibold">{region.name}</span>
                                     </button>
                                 ))}
@@ -109,7 +104,7 @@ export function StrategicFocus() {
                                     transition={{ duration: 0.3 }}
                                     className="h-full"
                                 >
-                                    <h4 className={`text-xl font-semibold bg-clip-text text-transparent mb-4 ${regions[activeRegion].color}`}>
+                                    <h4 className={`text-xl font-semibold mb-4 text-blue-600`}>
                                         {regions[activeRegion].name}
                                     </h4>
                                     <p className="text-gray-600 mb-6">

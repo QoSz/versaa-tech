@@ -82,3 +82,8 @@ html {
     @apply bg-background text-foreground;
   }
 }
+
+::selection {
+  background-color: rgb(14, 183, 255);
+  color: white;
+}

@@ -24,7 +24,7 @@ const globalAdvisors = {
     isAdvisors: true
 };
 
-const cardStyles = "border shadow-md rounded-2xl bg-gradient-to-r from-white to-gray-50";
+const cardStyles = "border shadow-md rounded-2xl";
 
 const GlobalAdvisorsIcon = () => (
     <div className="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center mb-2">
@@ -84,7 +84,7 @@ export function Team() {
                                 <GlobalAdvisorsIcon />
                                 <h3 className="text-xl font-semibold text-gray-800 mb-2">{globalAdvisors.name}</h3>
                                 <div>
-                                    <p className="text-gray-600">
+                                    <p className="text-blue-600">
                                         {globalAdvisors.role}
                                     </p>
                                 </div>

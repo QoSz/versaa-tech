@@ -21,7 +21,7 @@ export function Hero() {
             <div className="relative z-10 container mx-auto px-6 md:px-8">
                 <div className="max-w-4xl mx-auto text-center text-white">
                     <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-4">
-                        Your <span className="bg-gradient-to-r from-purple-500 to-pink-500 text-transparent bg-clip-text">Trusted Partner</span> for All Human Capital Services!
+                        Your <span className="bg-gradient-to-r from-[#4EFF7D] to-[#48AFEC] text-transparent bg-clip-text">Trusted Partner</span> for All Human Capital Services!
                     </h1>
                     <p className="text-base md:text-lg mb-6">
                         Versaa Tech delivers innovative and results-driven human capital solutions to help organizations grow.

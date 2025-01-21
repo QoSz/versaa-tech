@@ -3,7 +3,7 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { Monitor, Phone, Flame, Building2, Factory, Stethoscope, GraduationCap, Home, HardHat, ShoppingBag, Landmark, Shield } from 'lucide-react'
 import useEmblaCarousel from 'embla-carousel-react'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState, useRef } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 
@@ -101,9 +101,37 @@ export function Industries() {
 
     const [prevBtnEnabled, setPrevBtnEnabled] = useState(false)
     const [nextBtnEnabled, setNextBtnEnabled] = useState(false)
+    const autoplayRef = useRef<NodeJS.Timeout | null>(null)
 
-    const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi])
-    const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi])
+    const scrollPrev = useCallback(() => {
+        emblaApi?.scrollPrev()
+        resetAutoplay()
+    }, [emblaApi])
+
+    const scrollNext = useCallback(() => {
+        emblaApi?.scrollNext()
+        resetAutoplay()
+    }, [emblaApi])
+
+    const startAutoplay = useCallback(() => {
+        if (!emblaApi) return
+        
+        if (autoplayRef.current) {
+            clearInterval(autoplayRef.current)
+        }
+
+        autoplayRef.current = setInterval(() => {
+            if (emblaApi.canScrollNext()) {
+                emblaApi.scrollNext()
+            } else {
+                emblaApi.scrollTo(0)
+            }
+        }, 5000)
+    }, [emblaApi])
+
+    const resetAutoplay = useCallback(() => {
+        startAutoplay()
+    }, [startAutoplay])
 
     useEffect(() => {
         if (!emblaApi) return
@@ -116,20 +144,18 @@ export function Industries() {
         emblaApi.on('select', onSelect)
         onSelect()
 
-        // Start autoplay
-        const autoplay = setInterval(() => {
-            if (emblaApi.canScrollNext()) {
-                emblaApi.scrollNext()
-            } else {
-                emblaApi.scrollTo(0)
-            }
-        }, 5000) // Scroll every 8 seconds
+        startAutoplay()
+
+        emblaApi.on('pointerDown', resetAutoplay)
 
         return () => {
-            clearInterval(autoplay)
+            if (autoplayRef.current) {
+                clearInterval(autoplayRef.current)
+            }
             emblaApi.off('select', onSelect)
+            emblaApi.off('pointerDown', resetAutoplay)
         }
-    }, [emblaApi])
+    }, [emblaApi, startAutoplay, resetAutoplay])
 
     return (
         <section className="py-12">
@@ -144,31 +170,6 @@ export function Industries() {
                 </div>
 
                 <div className="relative">
-                    {/* Navigation Buttons */}
-                    <Button
-                        variant="outline"
-                        size="icon"
-                        className={`absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-10 rounded-full bg-white/90 shadow-md ${
-                            !prevBtnEnabled ? 'opacity-50 cursor-not-allowed' : ''
-                        }`}
-                        onClick={scrollPrev}
-                        disabled={!prevBtnEnabled}
-                    >
-                        <ChevronLeft className="h-4 w-4" />
-                    </Button>
-
-                    <Button
-                        variant="outline"
-                        size="icon"
-                        className={`absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-10 rounded-full bg-white/90 shadow-md ${
-                            !nextBtnEnabled ? 'opacity-50 cursor-not-allowed' : ''
-                        }`}
-                        onClick={scrollNext}
-                        disabled={!nextBtnEnabled}
-                    >
-                        <ChevronRight className="h-4 w-4" />
-                    </Button>
-
                     {/* Carousel Container */}
                     <div className="overflow-hidden" ref={emblaRef}>
                         <div className="flex gap-6 pl-6">
@@ -200,6 +201,33 @@ export function Industries() {
                                 )
                             })}
                         </div>
+                    </div>
+
+                    {/* Navigation Buttons - Moved below the carousel */}
+                    <div className="flex justify-center gap-4 mt-8">
+                        <Button
+                            variant="outline"
+                            size="icon"
+                            className={`rounded-full bg-white/90 shadow-md ${
+                                !prevBtnEnabled ? 'opacity-50 cursor-not-allowed' : ''
+                            }`}
+                            onClick={scrollPrev}
+                            disabled={!prevBtnEnabled}
+                        >
+                            <ChevronLeft className="h-4 w-4" />
+                        </Button>
+
+                        <Button
+                            variant="outline"
+                            size="icon"
+                            className={`rounded-full bg-white/90 shadow-md ${
+                                !nextBtnEnabled ? 'opacity-50 cursor-not-allowed' : ''
+                            }`}
+                            onClick={scrollNext}
+                            disabled={!nextBtnEnabled}
+                        >
+                            <ChevronRight className="h-4 w-4" />
+                        </Button>
                     </div>
                 </div>
             </div>

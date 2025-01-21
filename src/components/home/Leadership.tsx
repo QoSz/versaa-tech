@@ -1,6 +1,7 @@
 'use client'
 
 import { Card, CardContent } from "@/components/ui/card";
+import { useState } from "react";
 
 interface TeamMember {
     name: string;
@@ -45,8 +46,9 @@ const GlobalAdvisorsIcon = () => (
     </div>
 );
 
-
 export function Team() {
+    const [isExpanded, setIsExpanded] = useState(false);
+
     return (
         <section className="py-12 px-4 md:px-8">
             <div className="text-center mb-12">
@@ -55,14 +57,40 @@ export function Team() {
 
             <div className="flex flex-col lg:flex-row gap-8 max-w-6xl mx-auto">
                 {/* Description Card */}
-                <Card className={`${cardStyles} lg:w-1/2`}>
+                <Card className={`${cardStyles} lg:w-1/2 relative`}>
                     <CardContent className="p-6">
-                        <p className="text-gray-600">
-                            Versaa Tech is led by a team of visionary leaders dedicated to driving innovation, excellence, and sustainable growth in the area of Human Capital Management. Committed to empowering human capital, our leadership team and our global advisors focus on job trends, professional development, skill enhancement, and creating tailored solutions for growth.
-                        </p>
-                        <p className="text-gray-600 mt-4">
-                            With a deep understanding of industry trends and workforce dynamics, they specialize in targeted recruiting and delivering customized human capital solutions. By aligning talent strategies with organizational needs, they ensure Versaa Tech remains a trusted partner in driving individual and business success. Their dedication to nurturing talent and fostering meaningful connections reflects Versaa Tech&apos;s mission to be a trusted partner creating positive economic impact.
-                        </p>
+                        <div className={`relative transition-all duration-300 ${!isExpanded ? 'max-h-[12rem] overflow-hidden' : 'max-h-[1000px]'}`}>
+                            <p className="text-gray-600">
+                                Versaa Tech is led by a team of visionary leaders dedicated to driving innovation, excellence, and sustainable growth in the area of Human Capital Management. Committed to empowering human capital, our leadership team and our global advisors focus on job trends, professional development, skill enhancement, and creating tailored solutions for growth.
+                            </p>
+                            <p className="text-gray-600 mt-4">
+                                With a deep understanding of industry trends and workforce dynamics, they specialize in targeted recruiting and delivering customized human capital solutions. By aligning talent strategies with organizational needs, they ensure Versaa Tech remains a trusted partner in driving individual and business success. Their dedication to nurturing talent and fostering meaningful connections reflects Versaa Tech&apos;s mission to be a trusted partner creating positive economic impact.
+                            </p>
+                            {!isExpanded && (
+                                <div className="absolute inset-x-0 bottom-0 h-12 bg-white/50 bg-gradient-to-t from-white to-transparent backdrop-blur-sm flex items-end justify-center">
+                                    <button 
+                                        onClick={() => setIsExpanded(true)}
+                                        className="flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors"
+                                    >
+                                        Expand
+                                        <svg 
+                                            className="w-4 h-4 ml-1 transition-transform group-hover:translate-y-0.5"
+                                            fill="none" 
+                                            stroke="currentColor" 
+                                            viewBox="0 0 24 24" 
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path 
+                                                strokeLinecap="round" 
+                                                strokeLinejoin="round" 
+                                                strokeWidth={2} 
+                                                d="M19 9l-7 7-7-7" 
+                                            />
+                                        </svg>
+                                    </button>
+                                </div>
+                            )}
+                        </div>
                     </CardContent>
                 </Card>
 

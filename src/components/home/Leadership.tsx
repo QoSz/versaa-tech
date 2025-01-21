@@ -59,7 +59,7 @@ export function Team() {
                 {/* Description Card */}
                 <Card className={`${cardStyles} lg:w-1/2 relative`}>
                     <CardContent className="p-6">
-                        <div className={`relative transition-all duration-300 ${!isExpanded ? 'max-h-[12rem] overflow-hidden' : 'max-h-[1000px]'}`}>
+                        <div className={`relative transition-all duration-300 ${!isExpanded ? 'max-h-[12rem] overflow-hidden lg:max-h-none lg:overflow-visible' : 'max-h-[1000px]'}`}>
                             <p className="text-gray-600">
                                 Versaa Tech is led by a team of visionary leaders dedicated to driving innovation, excellence, and sustainable growth in the area of Human Capital Management. Committed to empowering human capital, our leadership team and our global advisors focus on job trends, professional development, skill enhancement, and creating tailored solutions for growth.
                             </p>
@@ -67,7 +67,7 @@ export function Team() {
                                 With a deep understanding of industry trends and workforce dynamics, they specialize in targeted recruiting and delivering customized human capital solutions. By aligning talent strategies with organizational needs, they ensure Versaa Tech remains a trusted partner in driving individual and business success. Their dedication to nurturing talent and fostering meaningful connections reflects Versaa Tech&apos;s mission to be a trusted partner creating positive economic impact.
                             </p>
                             {!isExpanded && (
-                                <div className="absolute inset-x-0 bottom-0 h-12 bg-white/50 bg-gradient-to-t from-white to-transparent backdrop-blur-sm flex items-end justify-center">
+                                <div className="absolute inset-x-0 bottom-0 h-12 bg-white/50 bg-gradient-to-t from-white to-transparent backdrop-blur-sm flex items-end justify-center lg:hidden">
                                     <button 
                                         onClick={() => setIsExpanded(true)}
                                         className="flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors"

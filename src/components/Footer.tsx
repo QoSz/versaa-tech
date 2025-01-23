@@ -1,9 +1,10 @@
-import * as React from 'react'
+import React from 'react'
 import Link from 'next/link'
 import { LayoutGrid, Building2, Lightbulb, Users, Building, Phone } from 'lucide-react'
 import { Separator } from "@/components/ui/separator"
 import { ScrollLink } from "@/components/ui/scroll-link"
 import Image from 'next/image'
+
 
 
 export function Footer() {
@@ -13,7 +14,10 @@ export function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div className="space-y-4">
                         <Link href="/">
-                            <Image src="/images/versaatech-logo.png" alt="Versaa Tech Logo" width={150} height={50} />
+                            <Image src="/images/versaatech-logo.png"
+                                alt="Versaa Tech Logo"
+                                width={130}
+                                height={130} />
                         </Link>
                         <p className="text-sm text-gray-300">
                             Versaa Tech is a knowledge-driven organization built on a foundation of deep expertise. Our core strengths exist in our comprehensive understanding of job trends, actionable market insights, and extensive experience, which enable us to deliver exceptional value.

@@ -11,6 +11,7 @@ export function Hero() {
                 alt="Background images of two people shaking hands"
                 fill
                 priority
+                quality={75}
                 className="object-cover"
             />
 

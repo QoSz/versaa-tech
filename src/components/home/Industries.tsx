@@ -103,16 +103,6 @@ export function Industries() {
     const [nextBtnEnabled, setNextBtnEnabled] = useState(false)
     const autoplayRef = useRef<NodeJS.Timeout | null>(null)
 
-    const scrollPrev = useCallback(() => {
-        emblaApi?.scrollPrev()
-        resetAutoplay()
-    }, [emblaApi])
-
-    const scrollNext = useCallback(() => {
-        emblaApi?.scrollNext()
-        resetAutoplay()
-    }, [emblaApi])
-
     const startAutoplay = useCallback(() => {
         if (!emblaApi) return
         
@@ -132,6 +122,18 @@ export function Industries() {
     const resetAutoplay = useCallback(() => {
         startAutoplay()
     }, [startAutoplay])
+
+    const scrollPrev = useCallback(() => {
+        if (!emblaApi) return
+        emblaApi.scrollPrev()
+        startAutoplay()
+    }, [emblaApi, startAutoplay])
+
+    const scrollNext = useCallback(() => {
+        if (!emblaApi) return
+        emblaApi.scrollNext()
+        startAutoplay()
+    }, [emblaApi, startAutoplay])
 
     useEffect(() => {
         if (!emblaApi) return

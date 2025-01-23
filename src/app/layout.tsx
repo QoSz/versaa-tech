@@ -3,7 +3,7 @@ import { Inter } from "next/font/google"
 import "./globals.css"
 import { Navigation } from "@/components/Navigation"
 import { Footer } from "@/components/Footer"
-import { PasswordProtection } from "@/components/PasswordProtection"
+// import { PasswordProtection } from "@/components/PasswordProtection"
 import ScrollToTopButton from "@/components/ScrollToTopButton"
 
 const inter = Inter({ subsets: ["latin"] })
@@ -21,12 +21,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <PasswordProtection>
-          <Navigation />
-          {children}
-          <Footer />
-          <ScrollToTopButton />
-        </PasswordProtection>
+        {/* <PasswordProtection> */}
+        <Navigation />
+        {children}
+        <Footer />
+        <ScrollToTopButton />
+        {/* </PasswordProtection> */}
       </body>
     </html>
   )

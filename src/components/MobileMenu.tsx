@@ -2,7 +2,6 @@
 
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetTrigger } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
-import { ScrollLink } from "@/components/ui/scroll-link"
 import { navItems, aboutItems } from "./Navigation"
 import Image from "next/image"
 import { useState } from "react"
@@ -44,8 +43,8 @@ export function MobileMenu() {
                     </Link>
                     {[...navItems, ...aboutItems].map((item) => (
                         <div key={item.title} onClick={handleLinkClick}>
-                            <ScrollLink
-                                href={item.href}
+                            <Link
+                                href={`/${item.href}`}
                                 className="text-md font-medium flex items-center gap-2 text-black hover:opacity-90 relative group"
                             >
                                 {React.createElement(item.icon, { 
@@ -56,7 +55,7 @@ export function MobileMenu() {
                                     {item.title}
                                 </span>
                                 <span className="absolute bottom-[-1px] left-0 w-0 h-[2px] bg-gradient-to-r from-blue-500 to-blue-700 group-hover:w-full transition-all duration-300"></span>
-                            </ScrollLink>
+                            </Link>
                         </div>
                     ))}
                 </nav>

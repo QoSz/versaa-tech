@@ -2,7 +2,6 @@ import React from "react"
 import Link from "next/link"
 import { LayoutGrid, Building2, Lightbulb, Info, Users, ChevronDown, Building, Phone } from 'lucide-react'
 import { Button } from "@/components/ui/button"
-import { ScrollLink } from "@/components/ui/scroll-link"
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -41,9 +40,9 @@ export function Navigation() {
                     </Link>
                     <div className="hidden md:flex space-x-6">
                         {navItems.map((item) => (
-                            <ScrollLink
+                            <Link
                                 key={item.title}
-                                href={item.href}
+                                href={`/${item.href}`}
                                 className="text-sm font-medium text-black hover:opacity-80 flex items-center gap-2 relative group"
                             >
                                 {React.createElement(item.icon, { 
@@ -52,7 +51,7 @@ export function Navigation() {
                                 })}
                                 <span className="relative z-10">{item.title}</span>
                                 <span className="absolute bottom-[-5px] left-0 w-0 h-[2px] bg-gradient-to-r from-blue-500 to-blue-700 group-hover:w-full transition-all duration-300"></span>
-                            </ScrollLink>
+                            </Link>
                         ))}
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
@@ -67,9 +66,9 @@ export function Navigation() {
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
                                 {aboutItems.map((item) => (
-                                    <ScrollLink
+                                    <Link
                                         key={item.title}
-                                        href={item.href}
+                                        href={`/${item.href}`}
                                         className="w-full"
                                     >
                                         <DropdownMenuItem className="flex items-center gap-2 cursor-pointer relative group">
@@ -82,7 +81,7 @@ export function Navigation() {
                                             </span>
                                             <span className="absolute bottom-[0px] left-0 w-0 h-[2px] bg-gradient-to-r from-blue-500 to-blue-700 group-hover:w-full transition-all duration-300"></span>
                                         </DropdownMenuItem>
-                                    </ScrollLink>
+                                    </Link>
                                 ))}
                             </DropdownMenuContent>
                         </DropdownMenu>

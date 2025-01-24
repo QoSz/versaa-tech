@@ -1,8 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
-import { LayoutGrid, Building2, Lightbulb, Users, Building, Phone } from 'lucide-react'
+import { LayoutGrid, Building2, Lightbulb, Users, Building, Phone, Shield } from 'lucide-react'
 import { Separator } from "@/components/ui/separator"
-import { ScrollLink } from "@/components/ui/scroll-link"
 import Image from 'next/image'
 
 
@@ -33,12 +32,23 @@ export function Footer() {
                                 { name: 'About', href: '#about', icon: Building },
                                 { name: 'Leadership', href: '#about-leadership', icon: Users },
                                 { name: 'Contact', href: '#contact', icon: Phone },
+                                { name: 'Privacy Policy', href: '/privacy', icon: Shield, isRoute: true },
                             ].map((item) => (
                                 <li key={item.name}>
-                                    <ScrollLink href={item.href} className="text-sm text-gray-300 hover:text-blue-200 transition-colors flex items-center gap-2">
-                                        {React.createElement(item.icon, { size: 14 })}
-                                        {item.name}
-                                    </ScrollLink>
+                                    {item.isRoute ? (
+                                        <Link href={item.href} className="text-sm text-gray-300 hover:text-blue-200 transition-colors flex items-center gap-2">
+                                            {React.createElement(item.icon, { size: 14 })}
+                                            {item.name}
+                                        </Link>
+                                    ) : (
+                                        <Link
+                                            href={`/${item.href}`}
+                                            className="text-sm text-gray-300 hover:text-blue-200 transition-colors flex items-center gap-2"
+                                        >
+                                            {React.createElement(item.icon, { size: 14 })}
+                                            {item.name}
+                                        </Link>
+                                    )}
                                 </li>
                             ))}
                         </ul>

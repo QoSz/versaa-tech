@@ -5,6 +5,7 @@ import { Navigation } from "@/components/Navigation"
 import { Footer } from "@/components/Footer"
 // import { PasswordProtection } from "@/components/PasswordProtection"
 import ScrollToTopButton from "@/components/ScrollToTopButton"
+import { Toaster } from 'sonner'
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -26,6 +27,7 @@ export default function RootLayout({
         {children}
         <Footer />
         <ScrollToTopButton />
+        <Toaster position="top-center" />
         {/* </PasswordProtection> */}
       </body>
     </html>

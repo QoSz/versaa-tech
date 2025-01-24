@@ -122,26 +122,6 @@ export function Industries() {
                 duration: 0.6,
                 ease: "easeOut"
             }
-        },
-        hover: {
-            scale: 1.02,
-            boxShadow: "0px 10px 30px rgba(0,0,0,0.1)",
-            transition: {
-                type: "spring",
-                stiffness: 300
-            }
-        }
-    };
-
-    const iconVariants = {
-        hover: {
-            scale: 1.1,
-            rotate: [-5, 5, -5],
-            transition: {
-                type: "spring",
-                stiffness: 300,
-                duration: 0.8
-            }
         }
     };
 
@@ -255,13 +235,9 @@ export function Industries() {
                                             <Card className="group h-full transition-all duration-300 rounded-2xl overflow-hidden">
                                                 <CardContent className="p-6 h-full">
                                                     <div className="flex flex-col sm:flex-row h-full sm:items-start gap-4">
-                                                        <motion.div
-                                                            className="bg-[#08314e]/5 p-3 rounded-lg group-hover:bg-[#08314e]/10 transition-colors shrink-0 w-fit"
-                                                            whileHover="hover"
-                                                            variants={iconVariants}
-                                                        >
+                                                        <div className="bg-[#08314e]/5 p-3 rounded-lg transition-colors shrink-0 w-fit">
                                                             <Icon className={`w-6 h-6 ${industry.color}`} />
-                                                        </motion.div>
+                                                        </div>
                                                         <div className="flex-1">
                                                             <h3 className="font-semibold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent mb-2">
                                                                 {industry.title}

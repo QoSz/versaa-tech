@@ -13,16 +13,6 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { useState } from 'react'
 import { toast } from 'sonner'
 
-const cardHoverVariant = {
-    hover: {
-        scale: 1.02,
-        transition: {
-            type: "spring",
-            stiffness: 300,
-        }
-    }
-}
-
 // Add these animation variants at the top of the file, after cardHoverVariant
 const slideFromLeft = {
     hidden: { opacity: 0, x: -50 },

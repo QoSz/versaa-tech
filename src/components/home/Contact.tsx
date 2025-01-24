@@ -154,7 +154,9 @@ export function Contact() {
                                 <form onSubmit={handleSubmitJobSeekers(onSubmitJobSeekers)} className="space-y-4">
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                         <div>
-                                            <Label htmlFor="jobSeekersFirstName">First Name</Label>
+                                            <Label htmlFor="jobSeekersFirstName">
+                                                First Name <span className="text-red-500">*</span>
+                                            </Label>
                                             <Input
                                                 id="jobSeekersFirstName"
                                                 {...registerJobSeekers("jobSeekersFirstName", { required: true })}
@@ -162,7 +164,9 @@ export function Contact() {
                                             />
                                         </div>
                                         <div>
-                                            <Label htmlFor="jobSeekersLastName">Last Name</Label>
+                                            <Label htmlFor="jobSeekersLastName">
+                                                Last Name <span className="text-red-500">*</span>
+                                            </Label>
                                             <Input
                                                 id="jobSeekersLastName"
                                                 {...registerJobSeekers("jobSeekersLastName", { required: true })}
@@ -171,7 +175,9 @@ export function Contact() {
                                         </div>
                                     </div>
                                     <div>
-                                        <Label htmlFor="jobSeekersEmail">Email</Label>
+                                        <Label htmlFor="jobSeekersEmail">
+                                            Email <span className="text-red-500">*</span>
+                                        </Label>
                                         <Input
                                             id="jobSeekersEmail"
                                             type="email"
@@ -188,7 +194,9 @@ export function Contact() {
                                         />
                                     </div>
                                     <div>
-                                        <Label htmlFor="jobSeekersMessage">Message</Label>
+                                        <Label htmlFor="jobSeekersMessage">
+                                            Message <span className="text-red-500">*</span>
+                                        </Label>
                                         <Textarea
                                             id="jobSeekersMessage"
                                             {...registerJobSeekers("jobSeekersMessage", { required: true })}
@@ -218,7 +226,7 @@ export function Contact() {
                                         >
                                             I have read and agree to the{' '}
                                             <Link href="/privacy" className="text-blue-600 hover:underline">
-                                                Privacy Policy
+                                                Privacy Policy <span className="text-red-500">*</span>
                                             </Link>
                                         </label>
                                     </div>
@@ -247,7 +255,9 @@ export function Contact() {
                                 <form onSubmit={handleSubmitEmployers(onSubmitEmployers)} className="space-y-4">
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                         <div>
-                                            <Label htmlFor="employersFirstName">First Name</Label>
+                                            <Label htmlFor="employersFirstName">
+                                                First Name <span className="text-red-500">*</span>
+                                            </Label>
                                             <Input
                                                 id="employersFirstName"
                                                 {...registerEmployers("employersFirstName", { required: true })}
@@ -255,7 +265,9 @@ export function Contact() {
                                             />
                                         </div>
                                         <div>
-                                            <Label htmlFor="employersLastName">Last Name</Label>
+                                            <Label htmlFor="employersLastName">
+                                                Last Name <span className="text-red-500">*</span>
+                                            </Label>
                                             <Input
                                                 id="employersLastName"
                                                 {...registerEmployers("employersLastName", { required: true })}
@@ -264,7 +276,9 @@ export function Contact() {
                                         </div>
                                     </div>
                                     <div>
-                                        <Label htmlFor="employersEmail">Email</Label>
+                                        <Label htmlFor="employersEmail">
+                                            Email <span className="text-red-500">*</span>
+                                        </Label>
                                         <Input
                                             id="employersEmail"
                                             type="email"
@@ -281,7 +295,9 @@ export function Contact() {
                                         />
                                     </div>
                                     <div>
-                                        <Label htmlFor="employersMessage">Message</Label>
+                                        <Label htmlFor="employersMessage">
+                                            Message <span className="text-red-500">*</span>
+                                        </Label>
                                         <Textarea
                                             id="employersMessage"
                                             {...registerEmployers("employersMessage", { required: true })}
@@ -311,7 +327,7 @@ export function Contact() {
                                         >
                                             I have read and agree to the{' '}
                                             <Link href="/privacy" className="text-green-600 hover:underline">
-                                                Privacy Policy
+                                                Privacy Policy <span className="text-red-500">*</span>
                                             </Link>
                                         </label>
                                     </div>

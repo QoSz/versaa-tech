@@ -1,5 +1,6 @@
 "use client"
 
+import { motion } from 'framer-motion';
 import { Card, CardContent } from "@/components/ui/card"
 import { Monitor, Phone, Flame, Building2, Factory, Stethoscope, GraduationCap, Home, HardHat, ShoppingBag, Landmark, Shield } from 'lucide-react'
 import useEmblaCarousel from 'embla-carousel-react'
@@ -99,6 +100,61 @@ export function Industries() {
         containScroll: 'trimSnaps'
     })
 
+    // Animation variants
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                duration: 0.8,
+                when: "beforeChildren",
+                staggerChildren: 0.2
+            }
+        }
+    };
+
+    const cardVariants = {
+        hidden: { y: 20, opacity: 0 },
+        visible: {
+            y: 0,
+            opacity: 1,
+            transition: {
+                duration: 0.6,
+                ease: "easeOut"
+            }
+        },
+        hover: {
+            scale: 1.02,
+            boxShadow: "0px 10px 30px rgba(0,0,0,0.1)",
+            transition: {
+                type: "spring",
+                stiffness: 300
+            }
+        }
+    };
+
+    const iconVariants = {
+        hover: {
+            scale: 1.1,
+            rotate: [-5, 5, -5],
+            transition: {
+                type: "spring",
+                stiffness: 300,
+                duration: 0.8
+            }
+        }
+    };
+
+    const buttonVariants = {
+        hover: {
+            scale: 1.1,
+            transition: {
+                type: "spring",
+                stiffness: 300
+            }
+        }
+    };
+
     const [prevBtnEnabled, setPrevBtnEnabled] = useState(false)
     const [nextBtnEnabled, setNextBtnEnabled] = useState(false)
     const autoplayRef = useRef<NodeJS.Timeout | null>(null)
@@ -160,16 +216,25 @@ export function Industries() {
     }, [emblaApi, startAutoplay, resetAutoplay])
 
     return (
-        <section className="py-12">
+        <motion.section 
+            className="py-12"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={containerVariants}
+        >
             <div className="px-4 md:px-8">
-                <div className="text-center mb-12">
+                <motion.div 
+                    className="text-center mb-12"
+                    variants={containerVariants}
+                >
                     <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent mb-4">
                         Our Industry Practices
                     </h2>
                     <p className="text-gray-600 max-w-2xl mx-auto">
                         We provide specialized human capital solutions across diverse industries, leveraging our deep understanding of sector-specific challenges and requirements.
                     </p>
-                </div>
+                </motion.div>
 
                 <div className="relative">
                     {/* Carousel Container */}
@@ -178,61 +243,81 @@ export function Industries() {
                             {industries.map((industry, index) => {
                                 const Icon = industry.icon
                                 return (
-                                    <div
+                                    <motion.div
                                         key={index}
                                         className="min-w-0 flex-[0_0_100%] sm:flex-[0_0_50%] md:flex-[0_0_calc(33.333%-1rem)]"
+                                        variants={cardVariants}
                                     >
-                                        <Card className="group h-full transition-all duration-300 rounded-2xl overflow-hidden">
-                                            <CardContent className="p-6 h-full">
-                                                <div className="flex flex-col sm:flex-row h-full sm:items-start gap-4">
-                                                    <div className="bg-[#08314e]/5 p-3 rounded-lg group-hover:bg-[#08314e]/10 transition-colors shrink-0 w-fit">
-                                                        <Icon className={`w-6 h-6 ${industry.color}`} />
+                                        <motion.div
+                                            whileHover="hover"
+                                            variants={cardVariants}
+                                        >
+                                            <Card className="group h-full transition-all duration-300 rounded-2xl overflow-hidden">
+                                                <CardContent className="p-6 h-full">
+                                                    <div className="flex flex-col sm:flex-row h-full sm:items-start gap-4">
+                                                        <motion.div
+                                                            className="bg-[#08314e]/5 p-3 rounded-lg group-hover:bg-[#08314e]/10 transition-colors shrink-0 w-fit"
+                                                            whileHover="hover"
+                                                            variants={iconVariants}
+                                                        >
+                                                            <Icon className={`w-6 h-6 ${industry.color}`} />
+                                                        </motion.div>
+                                                        <div className="flex-1">
+                                                            <h3 className="font-semibold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent mb-2">
+                                                                {industry.title}
+                                                            </h3>
+                                                            <p className="text-sm text-gray-600">
+                                                                {industry.description}
+                                                            </p>
+                                                        </div>
                                                     </div>
-                                                    <div className="flex-1">
-                                                        <h3 className="font-semibold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent mb-2">
-                                                            {industry.title}
-                                                        </h3>
-                                                        <p className="text-sm text-gray-600">
-                                                            {industry.description}
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </CardContent>
-                                        </Card>
-                                    </div>
+                                                </CardContent>
+                                            </Card>
+                                        </motion.div>
+                                    </motion.div>
                                 )
                             })}
                         </div>
                     </div>
 
-                    {/* Navigation Buttons - Moved below the carousel */}
+                    {/* Navigation Buttons */}
                     <div className="flex justify-center gap-4 mt-8">
-                        <Button
-                            variant="outline"
-                            size="icon"
-                            className={`rounded-full bg-white/90 shadow-md ${
-                                !prevBtnEnabled ? 'opacity-50 cursor-not-allowed' : ''
-                            }`}
-                            onClick={scrollPrev}
-                            disabled={!prevBtnEnabled}
+                        <motion.div
+                            whileHover="hover"
+                            variants={buttonVariants}
                         >
-                            <ChevronLeft className="h-4 w-4" />
-                        </Button>
+                            <Button
+                                variant="outline"
+                                size="icon"
+                                className={`rounded-full bg-white/90 shadow-md ${
+                                    !prevBtnEnabled ? 'opacity-50 cursor-not-allowed' : ''
+                                }`}
+                                onClick={scrollPrev}
+                                disabled={!prevBtnEnabled}
+                            >
+                                <ChevronLeft className="h-4 w-4" />
+                            </Button>
+                        </motion.div>
 
-                        <Button
-                            variant="outline"
-                            size="icon"
-                            className={`rounded-full bg-white/90 shadow-md ${
-                                !nextBtnEnabled ? 'opacity-50 cursor-not-allowed' : ''
-                            }`}
-                            onClick={scrollNext}
-                            disabled={!nextBtnEnabled}
+                        <motion.div
+                            whileHover="hover"
+                            variants={buttonVariants}
                         >
-                            <ChevronRight className="h-4 w-4" />
-                        </Button>
+                            <Button
+                                variant="outline"
+                                size="icon"
+                                className={`rounded-full bg-white/90 shadow-md ${
+                                    !nextBtnEnabled ? 'opacity-50 cursor-not-allowed' : ''
+                                }`}
+                                onClick={scrollNext}
+                                disabled={!nextBtnEnabled}
+                            >
+                                <ChevronRight className="h-4 w-4" />
+                            </Button>
+                        </motion.div>
                     </div>
                 </div>
             </div>
-        </section>
+        </motion.section>
     )
 }

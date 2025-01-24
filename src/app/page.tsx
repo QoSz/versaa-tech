@@ -4,7 +4,7 @@ import { About } from "@/components/home/About";
 import { Overview } from "@/components/home/Overview";
 import { Industries } from "@/components/home/Industries";
 import { Differentiators } from "@/components/home/Differentiators";
-import { StrategicFocus } from "@/components/home/StrategicFocus";
+import { Regions } from "@/components/home/Regions";
 import { Contact } from "@/components/home/Contact";
 
 export default function Home() {
@@ -21,7 +21,7 @@ export default function Home() {
         <section id="differentiators">
           <Differentiators />
         </section>
-        <StrategicFocus />
+        <Regions />
         <section id="about">
           <About />
           <section id="about-leadership">

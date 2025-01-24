@@ -1,5 +1,8 @@
+'use client'
+
 import { Award, Users, Lightbulb, Target } from 'lucide-react'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { motion } from 'framer-motion'
 
 // Interface for the highlight items
 interface HighlightItem {
@@ -36,40 +39,81 @@ const highlights: HighlightItem[] = [
     }
 ];
 
+// Animation variants
+const containerVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+        opacity: 1, 
+        y: 0,
+        transition: {
+            duration: 0.6,
+            when: "beforeChildren",
+            staggerChildren: 0.2
+        }
+    }
+};
+
+const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 }
+};
+
 export function About() {
     return (
-        <section className="py-12">
+        <motion.section 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={containerVariants}
+            className="py-12"
+        >
             <div className="container mx-auto px-4">
                 {/* Main Introduction */}
-                <div className="text-center mb-16">
-                    <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent mb-6">About Versaa Tech</h2>
-                    <p className="text-gray-600 max-w-3xl mx-auto text-lg">
+                <motion.div 
+                    className="text-center mb-16"
+                    variants={itemVariants}
+                >
+                    <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent mb-6">
+                        About Versaa Tech
+                    </h2>
+                    <motion.p 
+                        className="text-gray-600 max-w-3xl mx-auto text-lg"
+                        variants={itemVariants}
+                    >
                         Versaa Tech is a results-driven organization. We leverage deep job market data and human capital expertise to deliver specialized solutions.
-                    </p>
-                </div>
+                    </motion.p>
+                </motion.div>
 
                 {/* Key Highlights - Accordion Style */}
-                <div className="max-w-2xl mx-auto"> {/* Limiting width */}
+                <motion.div 
+                    className="max-w-2xl mx-auto"
+                    variants={itemVariants}
+                >
                     <Accordion type="single" collapsible className="w-full">
                         {highlights.map((item, index) => {
                             const Icon = item.icon;
                             return (
-                                <AccordionItem value={`item-${index}`} key={index}>
-                                    <AccordionTrigger>
-                                        <div className="flex items-center">
-                                            <Icon className={`mr-2 h-6 w-6 ${item.color}`} />
-                                            <span className="text-lg font-medium">{item.title}</span>
-                                        </div>
-                                    </AccordionTrigger>
-                                    <AccordionContent>
-                                        <p className="text-gray-600">{item.description}</p>
-                                    </AccordionContent>
-                                </AccordionItem>
+                                <motion.div 
+                                    key={index}
+                                    variants={itemVariants}
+                                >
+                                    <AccordionItem value={`item-${index}`}>
+                                        <AccordionTrigger>
+                                            <div className="flex items-center">
+                                                <Icon className={`mr-2 h-6 w-6 ${item.color}`} />
+                                                <span className="text-lg font-medium">{item.title}</span>
+                                            </div>
+                                        </AccordionTrigger>
+                                        <AccordionContent>
+                                            <p className="text-gray-600">{item.description}</p>
+                                        </AccordionContent>
+                                    </AccordionItem>
+                                </motion.div>
                             );
                         })}
                     </Accordion>
-                </div>
+                </motion.div>
             </div>
-        </section>
+        </motion.section>
     );
 }

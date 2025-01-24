@@ -23,6 +23,22 @@ const cardHoverVariant = {
     }
 }
 
+// Add these animation variants at the top of the file, after cardHoverVariant
+const slideFromLeft = {
+    hidden: { opacity: 0, x: -50 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.5 } }
+};
+
+const slideFromRight = {
+    hidden: { opacity: 0, x: 50 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.5 } }
+};
+
+const slideFromBottom = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+};
+
 // Update the FormData interface to include form-specific fields
 interface JobSeekersFormData {
     jobSeekersFirstName: string;
@@ -146,233 +162,257 @@ export function Contact() {
                     {/* Forms Section */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
                         {/* Job Seekers Form */}
-                        <Card className="rounded-2xl shadow-md border-blue-100">
-                            <CardContent className="p-6">
-                                <h3 className="text-xl font-semibold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent mb-6">
-                                    Job Seekers
-                                </h3>
-                                <form onSubmit={handleSubmitJobSeekers(onSubmitJobSeekers)} className="space-y-4">
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <motion.div
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                            variants={slideFromLeft}
+                        >
+                            <Card className="rounded-2xl shadow-md border-blue-100">
+                                <CardContent className="p-6">
+                                    <h3 className="text-xl font-semibold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent mb-6">
+                                        Job Seekers
+                                    </h3>
+                                    <form onSubmit={handleSubmitJobSeekers(onSubmitJobSeekers)} className="space-y-4">
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            <div>
+                                                <Label htmlFor="jobSeekersFirstName">
+                                                    First Name <span className="text-red-500">*</span>
+                                                </Label>
+                                                <Input
+                                                    id="jobSeekersFirstName"
+                                                    {...registerJobSeekers("jobSeekersFirstName", { required: true })}
+                                                    className={errorsJobSeekers.jobSeekersFirstName ? "border-red-500" : ""}
+                                                />
+                                            </div>
+                                            <div>
+                                                <Label htmlFor="jobSeekersLastName">
+                                                    Last Name <span className="text-red-500">*</span>
+                                                </Label>
+                                                <Input
+                                                    id="jobSeekersLastName"
+                                                    {...registerJobSeekers("jobSeekersLastName", { required: true })}
+                                                    className={errorsJobSeekers.jobSeekersLastName ? "border-red-500" : ""}
+                                                />
+                                            </div>
+                                        </div>
                                         <div>
-                                            <Label htmlFor="jobSeekersFirstName">
-                                                First Name <span className="text-red-500">*</span>
+                                            <Label htmlFor="jobSeekersEmail">
+                                                Email <span className="text-red-500">*</span>
                                             </Label>
                                             <Input
-                                                id="jobSeekersFirstName"
-                                                {...registerJobSeekers("jobSeekersFirstName", { required: true })}
-                                                className={errorsJobSeekers.jobSeekersFirstName ? "border-red-500" : ""}
+                                                id="jobSeekersEmail"
+                                                type="email"
+                                                {...registerJobSeekers("jobSeekersEmail", { required: true })}
+                                                className={errorsJobSeekers.jobSeekersEmail ? "border-red-500" : ""}
                                             />
                                         </div>
                                         <div>
-                                            <Label htmlFor="jobSeekersLastName">
-                                                Last Name <span className="text-red-500">*</span>
-                                            </Label>
+                                            <Label htmlFor="jobSeekersPhone">Phone</Label>
                                             <Input
-                                                id="jobSeekersLastName"
-                                                {...registerJobSeekers("jobSeekersLastName", { required: true })}
-                                                className={errorsJobSeekers.jobSeekersLastName ? "border-red-500" : ""}
+                                                id="jobSeekersPhone"
+                                                type="tel"
+                                                {...registerJobSeekers("jobSeekersPhone")}
                                             />
                                         </div>
-                                    </div>
-                                    <div>
-                                        <Label htmlFor="jobSeekersEmail">
-                                            Email <span className="text-red-500">*</span>
-                                        </Label>
-                                        <Input
-                                            id="jobSeekersEmail"
-                                            type="email"
-                                            {...registerJobSeekers("jobSeekersEmail", { required: true })}
-                                            className={errorsJobSeekers.jobSeekersEmail ? "border-red-500" : ""}
-                                        />
-                                    </div>
-                                    <div>
-                                        <Label htmlFor="jobSeekersPhone">Phone</Label>
-                                        <Input
-                                            id="jobSeekersPhone"
-                                            type="tel"
-                                            {...registerJobSeekers("jobSeekersPhone")}
-                                        />
-                                    </div>
-                                    <div>
-                                        <Label htmlFor="jobSeekersMessage">
-                                            Message <span className="text-red-500">*</span>
-                                        </Label>
-                                        <Textarea
-                                            id="jobSeekersMessage"
-                                            {...registerJobSeekers("jobSeekersMessage", { required: true })}
-                                            className={errorsJobSeekers.jobSeekersMessage ? "border-red-500" : ""}
-                                        />
-                                    </div>
-                                    <div className="flex items-center space-x-2 mt-4">
-                                        <Checkbox
-                                            id="jobSeekersPrivacyCheckbox"
-                                            {...registerJobSeekers("jobSeekersPrivacy", { 
-                                                required: "You must accept the privacy policy to continue",
-                                                validate: (value) => value === true || "You must accept the privacy policy"
-                                            })}
-                                            onCheckedChange={(checked) => {
-                                                setValueJobSeekers("jobSeekersPrivacy", checked === true, { 
-                                                    shouldValidate: true,
-                                                    shouldDirty: true 
-                                                });
-                                            }}
-                                            aria-label="Job Seekers Privacy Policy Checkbox"
-                                        />
-                                        <label
-                                            htmlFor="jobSeekersPrivacyCheckbox"
-                                            className={`text-sm font-medium leading-none ${
-                                                errorsJobSeekers.jobSeekersPrivacy ? "text-red-500" : "text-gray-700"
-                                            }`}
+                                        <div>
+                                            <Label htmlFor="jobSeekersMessage">
+                                                Message <span className="text-red-500">*</span>
+                                            </Label>
+                                            <Textarea
+                                                id="jobSeekersMessage"
+                                                {...registerJobSeekers("jobSeekersMessage", { required: true })}
+                                                className={errorsJobSeekers.jobSeekersMessage ? "border-red-500" : ""}
+                                            />
+                                        </div>
+                                        <div className="flex items-center space-x-2 mt-4">
+                                            <Checkbox
+                                                id="jobSeekersPrivacyCheckbox"
+                                                {...registerJobSeekers("jobSeekersPrivacy", { 
+                                                    required: "You must accept the privacy policy to continue",
+                                                    validate: (value) => value === true || "You must accept the privacy policy"
+                                                })}
+                                                onCheckedChange={(checked) => {
+                                                    setValueJobSeekers("jobSeekersPrivacy", checked === true, { 
+                                                        shouldValidate: true,
+                                                        shouldDirty: true 
+                                                    });
+                                                }}
+                                                aria-label="Job Seekers Privacy Policy Checkbox"
+                                            />
+                                            <label
+                                                htmlFor="jobSeekersPrivacyCheckbox"
+                                                className={`text-sm font-medium leading-none ${
+                                                    errorsJobSeekers.jobSeekersPrivacy ? "text-red-500" : "text-gray-700"
+                                                }`}
+                                            >
+                                                I have read and agree to the{' '}
+                                                <Link href="/privacy" className="text-blue-600 hover:underline">
+                                                    Privacy Policy <span className="text-red-500">*</span>
+                                                </Link>
+                                            </label>
+                                        </div>
+                                        {errorsJobSeekers.jobSeekersPrivacy && (
+                                            <p className="text-sm text-red-500 mt-1">
+                                                {errorsJobSeekers.jobSeekersPrivacy.message?.toString()}
+                                            </p>
+                                        )}
+                                        <Button
+                                            type="submit"
+                                            className="w-full bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 mt-4"
+                                            disabled={!isValidJobSeekers || isLoadingJobSeekers}
                                         >
-                                            I have read and agree to the{' '}
-                                            <Link href="/privacy" className="text-blue-600 hover:underline">
-                                                Privacy Policy <span className="text-red-500">*</span>
-                                            </Link>
-                                        </label>
-                                    </div>
-                                    {errorsJobSeekers.jobSeekersPrivacy && (
-                                        <p className="text-sm text-red-500 mt-1">
-                                            {errorsJobSeekers.jobSeekersPrivacy.message?.toString()}
-                                        </p>
-                                    )}
-                                    <Button
-                                        type="submit"
-                                        className="w-full bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 mt-4"
-                                        disabled={!isValidJobSeekers || isLoadingJobSeekers}
-                                    >
-                                        {isLoadingJobSeekers ? "Submitting..." : "Submit"}
-                                    </Button>
-                                </form>
-                            </CardContent>
-                        </Card>
+                                            {isLoadingJobSeekers ? "Submitting..." : "Submit"}
+                                        </Button>
+                                    </form>
+                                </CardContent>
+                            </Card>
+                        </motion.div>
 
                         {/* Employers Form */}
-                        <Card className="rounded-2xl shadow-md border-green-100">
-                            <CardContent className="p-6">
-                                <h3 className="text-xl font-semibold bg-gradient-to-r from-green-500 to-green-700 bg-clip-text text-transparent mb-6">
-                                    Employers
-                                </h3>
-                                <form onSubmit={handleSubmitEmployers(onSubmitEmployers)} className="space-y-4">
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        <div>
-                                            <Label htmlFor="employersFirstName">
-                                                First Name <span className="text-red-500">*</span>
-                                            </Label>
-                                            <Input
-                                                id="employersFirstName"
-                                                {...registerEmployers("employersFirstName", { required: true })}
-                                                className={errorsEmployers.employersFirstName ? "border-red-500" : ""}
-                                            />
-                                        </div>
-                                        <div>
-                                            <Label htmlFor="employersLastName">
-                                                Last Name <span className="text-red-500">*</span>
-                                            </Label>
-                                            <Input
-                                                id="employersLastName"
-                                                {...registerEmployers("employersLastName", { required: true })}
-                                                className={errorsEmployers.employersLastName ? "border-red-500" : ""}
-                                            />
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <Label htmlFor="employersEmail">
-                                            Email <span className="text-red-500">*</span>
-                                        </Label>
-                                        <Input
-                                            id="employersEmail"
-                                            type="email"
-                                            {...registerEmployers("employersEmail", { required: true })}
-                                            className={errorsEmployers.employersEmail ? "border-red-500" : ""}
-                                        />
-                                    </div>
-                                    <div>
-                                        <Label htmlFor="employersPhone">Phone</Label>
-                                        <Input
-                                            id="employersPhone"
-                                            type="tel"
-                                            {...registerEmployers("employersPhone")}
-                                        />
-                                    </div>
-                                    <div>
-                                        <Label htmlFor="employersMessage">
-                                            Message <span className="text-red-500">*</span>
-                                        </Label>
-                                        <Textarea
-                                            id="employersMessage"
-                                            {...registerEmployers("employersMessage", { required: true })}
-                                            className={errorsEmployers.employersMessage ? "border-red-500" : ""}
-                                        />
-                                    </div>
-                                    <div className="flex items-center space-x-2 mt-4">
-                                        <Checkbox
-                                            id="employersPrivacyCheckbox"
-                                            {...registerEmployers("employersPrivacy", { 
-                                                required: "You must accept the privacy policy to continue",
-                                                validate: (value) => value === true || "You must accept the privacy policy"
-                                            })}
-                                            onCheckedChange={(checked) => {
-                                                setValueEmployers("employersPrivacy", checked === true, { 
-                                                    shouldValidate: true,
-                                                    shouldDirty: true 
-                                                });
-                                            }}
-                                            aria-label="Employers Privacy Policy Checkbox"
-                                        />
-                                        <label
-                                            htmlFor="employersPrivacyCheckbox"
-                                            className={`text-sm font-medium leading-none ${
-                                                errorsEmployers.employersPrivacy ? "text-red-500" : "text-gray-700"
-                                            }`}
-                                        >
-                                            I have read and agree to the{' '}
-                                            <Link href="/privacy" className="text-green-600 hover:underline">
-                                                Privacy Policy <span className="text-red-500">*</span>
-                                            </Link>
-                                        </label>
-                                    </div>
-                                    {errorsEmployers.employersPrivacy && (
-                                        <p className="text-sm text-red-500 mt-1">
-                                            {errorsEmployers.employersPrivacy.message?.toString()}
-                                        </p>
-                                    )}
-                                    <Button
-                                        type="submit"
-                                        className="w-full bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 mt-4"
-                                        disabled={!isValidEmployers || isLoadingEmployers}
-                                    >
-                                        {isLoadingEmployers ? "Submitting..." : "Submit"}
-                                    </Button>
-                                </form>
-                            </CardContent>
-                        </Card>
-                    </div>
-
-                    {/* Existing Email Card */}
-                    <div className="flex justify-center">
                         <motion.div
-                            className="max-w-md mx-auto w-full"
-                            variants={cardHoverVariant}
-                            whileHover="hover"
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                            variants={slideFromRight}
                         >
-                            <Card className="rounded-2xl shadow-md h-full">
-                                <CardContent className="p-7 flex flex-col items-center">
-                                    <div className="p-2.5 bg-[#08314e]/10 rounded-full mb-3">
-                                        <Mail className="h-7 w-7 text-red-500" />
-                                    </div>
-                                    <h3 className="font-semibold text-gray-900 text-lg mb-1">
-                                        Email
+                            <Card className="rounded-2xl shadow-md border-green-100">
+                                <CardContent className="p-6">
+                                    <h3 className="text-xl font-semibold bg-gradient-to-r from-green-500 to-green-700 bg-clip-text text-transparent mb-6">
+                                        Employers
                                     </h3>
-                                    <a
-                                        href="mailto:info@versaatech.com"
-                                        className="text-gray-600 hover:text-gray-600/80 transition-colors text-center"
-                                    >
-                                        info@VersaaTech.com
-                                    </a>
+                                    <form onSubmit={handleSubmitEmployers(onSubmitEmployers)} className="space-y-4">
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            <div>
+                                                <Label htmlFor="employersFirstName">
+                                                    First Name <span className="text-red-500">*</span>
+                                                </Label>
+                                                <Input
+                                                    id="employersFirstName"
+                                                    {...registerEmployers("employersFirstName", { required: true })}
+                                                    className={errorsEmployers.employersFirstName ? "border-red-500" : ""}
+                                                />
+                                            </div>
+                                            <div>
+                                                <Label htmlFor="employersLastName">
+                                                    Last Name <span className="text-red-500">*</span>
+                                                </Label>
+                                                <Input
+                                                    id="employersLastName"
+                                                    {...registerEmployers("employersLastName", { required: true })}
+                                                    className={errorsEmployers.employersLastName ? "border-red-500" : ""}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <Label htmlFor="employersEmail">
+                                                Email <span className="text-red-500">*</span>
+                                            </Label>
+                                            <Input
+                                                id="employersEmail"
+                                                type="email"
+                                                {...registerEmployers("employersEmail", { required: true })}
+                                                className={errorsEmployers.employersEmail ? "border-red-500" : ""}
+                                            />
+                                        </div>
+                                        <div>
+                                            <Label htmlFor="employersPhone">Phone</Label>
+                                            <Input
+                                                id="employersPhone"
+                                                type="tel"
+                                                {...registerEmployers("employersPhone")}
+                                            />
+                                        </div>
+                                        <div>
+                                            <Label htmlFor="employersMessage">
+                                                Message <span className="text-red-500">*</span>
+                                            </Label>
+                                            <Textarea
+                                                id="employersMessage"
+                                                {...registerEmployers("employersMessage", { required: true })}
+                                                className={errorsEmployers.employersMessage ? "border-red-500" : ""}
+                                            />
+                                        </div>
+                                        <div className="flex items-center space-x-2 mt-4">
+                                            <Checkbox
+                                                id="employersPrivacyCheckbox"
+                                                {...registerEmployers("employersPrivacy", { 
+                                                    required: "You must accept the privacy policy to continue",
+                                                    validate: (value) => value === true || "You must accept the privacy policy"
+                                                })}
+                                                onCheckedChange={(checked) => {
+                                                    setValueEmployers("employersPrivacy", checked === true, { 
+                                                        shouldValidate: true,
+                                                        shouldDirty: true 
+                                                    });
+                                                }}
+                                                aria-label="Employers Privacy Policy Checkbox"
+                                            />
+                                            <label
+                                                htmlFor="employersPrivacyCheckbox"
+                                                className={`text-sm font-medium leading-none ${
+                                                    errorsEmployers.employersPrivacy ? "text-red-500" : "text-gray-700"
+                                                }`}
+                                            >
+                                                I have read and agree to the{' '}
+                                                <Link href="/privacy" className="text-green-600 hover:underline">
+                                                    Privacy Policy <span className="text-red-500">*</span>
+                                                </Link>
+                                            </label>
+                                        </div>
+                                        {errorsEmployers.employersPrivacy && (
+                                            <p className="text-sm text-red-500 mt-1">
+                                                {errorsEmployers.employersPrivacy.message?.toString()}
+                                            </p>
+                                        )}
+                                        <Button
+                                            type="submit"
+                                            className="w-full bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 mt-4"
+                                            disabled={!isValidEmployers || isLoadingEmployers}
+                                        >
+                                            {isLoadingEmployers ? "Submitting..." : "Submit"}
+                                        </Button>
+                                    </form>
                                 </CardContent>
                             </Card>
                         </motion.div>
                     </div>
+
+                    {/* Existing Email Card */}
+                    <motion.div
+                        className="max-w-md mx-auto w-full"
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        variants={{
+                            ...slideFromBottom,
+                            hover: {
+                                scale: 1.02,
+                                transition: {
+                                    type: "spring",
+                                    stiffness: 300,
+                                }
+                            }
+                        }}
+                        whileHover="hover"
+                    >
+                        <Card className="rounded-2xl shadow-md h-full">
+                            <CardContent className="p-7 flex flex-col items-center">
+                                <div className="p-2.5 bg-[#08314e]/10 rounded-full mb-3">
+                                    <Mail className="h-7 w-7 text-red-500" />
+                                </div>
+                                <h3 className="font-semibold text-gray-900 text-lg mb-1">
+                                    Email
+                                </h3>
+                                <a
+                                    href="mailto:info@versaatech.com"
+                                    className="text-gray-600 hover:text-gray-600/80 transition-colors text-center"
+                                >
+                                    info@VersaaTech.com
+                                </a>
+                            </CardContent>
+                        </Card>
+                    </motion.div>
                 </motion.div>
             </div>
         </section>

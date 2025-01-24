@@ -13,10 +13,15 @@ export function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div className="space-y-4">
                         <Link href="/">
-                            <Image src="/images/versaatech-logo.png"
+                            <Image 
+                                src="/images/versaatech-logo.png"
                                 alt="Versaa Tech Logo"
                                 width={130}
-                                height={130} />
+                                height={130}
+                                className="w-[130px] h-[130px]"
+                                loading="lazy"
+                                fetchPriority="low"
+                            />
                         </Link>
                         <p className="text-sm text-gray-300">
                             Versaa Tech is a knowledge-driven organization built on a foundation of deep expertise. Our core strengths exist in our comprehensive understanding of job trends, actionable market insights, and extensive experience, which enable us to deliver exceptional value.

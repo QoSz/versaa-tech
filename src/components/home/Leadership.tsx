@@ -21,7 +21,7 @@ const teamMembers: TeamMember[] = [
 
 const globalAdvisors = {
     name: "Global Advisors",
-    role: "Team of Advisors in USA, Dubai, Mexico and Kenya",
+    role: "Team of Advisors in USA, Dubai, Mexico, India and Kenya",
     isAdvisors: true
 };
 

@@ -11,7 +11,10 @@ const regions = [
             "Tech startup ecosystem development",
             "Infrastructure project staffing",
             "Sustainable energy projects",
-            "Educational technology initiatives"
+            "Educational technology initiatives",
+            "Digital Transformation Projects",
+            "Financial Services Innovation",
+            "FinTech Development"
         ],
     },
     {

@@ -51,8 +51,7 @@ export function Hero() {
                 fill
                 quality={75}
                 className="object-cover"
-                fetchPriority="low"
-                loading="lazy"
+                priority
             />
 
             {/* Fade Layer */}

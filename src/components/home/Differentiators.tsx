@@ -1,11 +1,12 @@
 "use client"
 
 import { createElement } from 'react'
-import { Globe2, Users, Rocket, Building, Search, Badge, Handshake, Target, Award } from 'lucide-react'
+import { Users, Rocket, Building, Search, Badge, Handshake, Target, Award } from 'lucide-react'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 interface Differentiator {
-    icon: React.ElementType
+    icon: React.ElementType | string
     title: string
     color: string
     description: string
@@ -13,7 +14,7 @@ interface Differentiator {
 
 const differentiators: Differentiator[] = [
     {
-        icon: Globe2,
+        icon: "/images/globe.svg",
         title: "Your Right Shore Partner",
         color: "text-blue-600",
         description: "We provide a seamless extension of your team, leveraging global talent to drive efficiency and innovation."
@@ -87,7 +88,7 @@ export function Differentiators() {
     return (
         <section className="py-12 overflow-hidden">
             <div className="container mx-auto px-4">
-                <motion.h2 
+                <motion.h2
                     initial={{ y: 20, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.5 }}
@@ -97,7 +98,7 @@ export function Differentiators() {
                     Our Differentiators
                 </motion.h2>
 
-                <motion.div 
+                <motion.div
                     className="grid grid-cols-1 md:grid-cols-3 gap-8"
                     variants={containerVariants}
                     initial="hidden"
@@ -105,15 +106,27 @@ export function Differentiators() {
                     viewport={{ once: true, amount: 0.2 }}
                 >
                     {differentiators.map((item, index) => (
-                        <motion.div 
-                            key={index} 
+                        <motion.div
+                            key={index}
                             className="relative p-6 rounded-lg transition-transform duration-300 hover:scale-105"
                             variants={itemVariants}
                             whileHover={{ scale: 1.05 }}
                         >
                             <div className="flex flex-col items-center text-center">
                                 <div className="p-3 bg-[#08314e]/10 rounded-full mb-4">
-                                    {createElement(item.icon, { className: `w-7 h-7 ${item.color}` })}
+                                    {typeof item.icon === 'string' ? (
+                                        <Image
+                                            src={item.icon}
+                                            alt={item.title}
+                                            width={28}
+                                            height={28}
+                                            className={item.color}
+                                            fetchPriority="low"
+                                            loading="lazy"
+                                        />
+                                    ) : (
+                                        createElement(item.icon, { className: `w-7 h-7 ${item.color}` })
+                                    )}
                                 </div>
                                 <h3 className={`text-xl font-semibold text-gray-800 mb-2`}>
                                     {item.title}

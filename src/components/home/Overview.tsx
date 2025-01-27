@@ -112,9 +112,9 @@ export function Overview() {
                                 {service.title === "Why Choose Us" && <Users2 className="w-8 h-8 text-green-500" strokeWidth={1.5} />}
                                 {service.title === "Our Services" && <Briefcase className="w-8 h-8 text-yellow-500" strokeWidth={1.5} />}
                             </motion.div>
-                            <h3 className="text-2xl font-semibold text-gray-700 bg-gradient-to-r from-blue-500 to-blue-700 text-transparent bg-clip-text">
+                            <h2 className="text-2xl font-semibold text-gray-700 bg-gradient-to-r from-blue-500 to-blue-700 text-transparent bg-clip-text">
                                 {service.title}
-                            </h3>
+                            </h2>
                         </div>
                         <div>
                             <p className="text-gray-700 mb-6">{service.content}</p>

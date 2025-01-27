@@ -42,6 +42,7 @@ interface JobSeekersFormData {
 interface EmployersFormData {
     employersFirstName: string;
     employersLastName: string;
+    employersOrganization: string;
     employersEmail: string;
     employersPhone?: string;
     employersMessage: string;
@@ -198,7 +199,9 @@ export function Contact() {
                                             />
                                         </div>
                                         <div>
-                                            <Label htmlFor="jobSeekersPhone">Phone</Label>
+                                            <Label htmlFor="jobSeekersPhone">
+                                                Phone <span className="text-gray-400 text-sm">(include country code)</span>
+                                            </Label>
                                             <Input
                                                 id="jobSeekersPhone"
                                                 type="tel"
@@ -212,7 +215,7 @@ export function Contact() {
                                             <Textarea
                                                 id="jobSeekersMessage"
                                                 {...registerJobSeekers("jobSeekersMessage", { required: true })}
-                                                className={errorsJobSeekers.jobSeekersMessage ? "border-red-500" : ""}
+                                                className={`${errorsJobSeekers.jobSeekersMessage ? "border-red-500" : ""} md:min-h-[160px]`}
                                             />
                                         </div>
                                         <div className="flex items-center space-x-2 mt-4">
@@ -295,6 +298,16 @@ export function Contact() {
                                             </div>
                                         </div>
                                         <div>
+                                            <Label htmlFor="employersOrganization">
+                                                Organization <span className="text-red-500">*</span>
+                                            </Label>
+                                            <Input
+                                                id="employersOrganization"
+                                                {...registerEmployers("employersOrganization", { required: true })}
+                                                className={errorsEmployers.employersOrganization ? "border-red-500" : ""}
+                                            />
+                                        </div>
+                                        <div>
                                             <Label htmlFor="employersEmail">
                                                 Email <span className="text-red-500">*</span>
                                             </Label>
@@ -306,7 +319,9 @@ export function Contact() {
                                             />
                                         </div>
                                         <div>
-                                            <Label htmlFor="employersPhone">Phone</Label>
+                                            <Label htmlFor="employersPhone">
+                                                Phone <span className="text-gray-400 text-sm">(include country code)</span>
+                                            </Label>
                                             <Input
                                                 id="employersPhone"
                                                 type="tel"

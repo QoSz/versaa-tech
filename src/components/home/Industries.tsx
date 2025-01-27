@@ -270,6 +270,7 @@ export function Industries() {
                                 }`}
                                 onClick={scrollPrev}
                                 disabled={!prevBtnEnabled}
+                                aria-label="Previous"
                             >
                                 <ChevronLeft className="h-4 w-4" />
                             </Button>
@@ -287,6 +288,7 @@ export function Industries() {
                                 }`}
                                 onClick={scrollNext}
                                 disabled={!nextBtnEnabled}
+                                aria-label="Next"
                             >
                                 <ChevronRight className="h-4 w-4" />
                             </Button>

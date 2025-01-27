@@ -2,8 +2,8 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image'
+import Link from 'next/link';
 import { Button } from "@/components/ui/button"
-import { ScrollLink } from "@/components/ui/scroll-link"
 
 export function Hero() {
     // Animation variants
@@ -75,7 +75,7 @@ export function Hero() {
                     >
                         Versaa Tech delivers innovative and results-driven human capital solutions to help organizations grow.
                     </motion.p>
-                    <ScrollLink href="#contact">
+                    <Link href="/contact">
                         <motion.div
                             variants={buttonVariants}
                             whileHover="hover"
@@ -84,7 +84,7 @@ export function Hero() {
                                 How We Can Help
                             </Button>
                         </motion.div>
-                    </ScrollLink>
+                    </Link>
                 </div>
             </motion.div>
         </motion.section>

@@ -36,7 +36,7 @@ export function Footer() {
                                 { name: 'How We Work', href: '#differentiators', icon: Lightbulb },
                                 { name: 'About', href: '#about', icon: Building },
                                 { name: 'Leadership', href: '#about-leadership', icon: Users },
-                                { name: 'Contact', href: '#contact', icon: Phone },
+                                { name: 'Contact', href: '/contact', icon: Phone, isRoute: true },
                                 { name: 'Privacy Policy', href: '/privacy', icon: Shield, isRoute: true },
                             ].map((item) => (
                                 <li key={item.name}>

@@ -13,15 +13,15 @@ import { MobileMenu } from "./MobileMenu"
 
 
 export const navItems = [
-    { title: "Overview", href: "#overview", icon: LayoutGrid },
-    { title: "Industries", href: "#industries", icon: Building2 },
-    { title: "How We Work", href: "#differentiators", icon: Lightbulb },
-    { title: "Contact", href: "#contact", icon: Phone },
+    { title: "Overview", href: "/#overview", icon: LayoutGrid },
+    { title: "Industries", href: "/#industries", icon: Building2 },
+    { title: "How We Work", href: "/#differentiators", icon: Lightbulb },
+    { title: "Contact", href: "/contact", icon: Phone },
 ]
 
 export const aboutItems = [
-    { title: "About Versaa Tech", href: "#about", icon: Building },
-    { title: "Leadership", href: "#about-leadership", icon: Users },
+    { title: "About Versaa Tech", href: "/#about", icon: Building },
+    { title: "Leadership", href: "/#about-leadership", icon: Users },
 ]
 
 export function Navigation() {
@@ -42,7 +42,7 @@ export function Navigation() {
                         {navItems.map((item) => (
                             <Link
                                 key={item.title}
-                                href={`/${item.href}`}
+                                href={item.href}
                                 className="text-sm font-medium text-black hover:opacity-80 flex items-center gap-2 relative group"
                             >
                                 {React.createElement(item.icon, { 
@@ -68,7 +68,7 @@ export function Navigation() {
                                 {aboutItems.map((item) => (
                                     <Link
                                         key={item.title}
-                                        href={`/${item.href}`}
+                                        href={item.href}
                                         className="w-full"
                                     >
                                         <DropdownMenuItem className="flex items-center gap-2 cursor-pointer relative group">

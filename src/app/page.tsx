@@ -5,7 +5,6 @@ import { Overview } from "@/components/home/Overview";
 import { Industries } from "@/components/home/Industries";
 import { Differentiators } from "@/components/home/Differentiators";
 import { Regions } from "@/components/home/Regions";
-import { Contact } from "@/components/home/Contact";
 
 export default function Home() {
   return (
@@ -27,9 +26,6 @@ export default function Home() {
           <section id="about-leadership">
             <Team />
           </section>
-        </section>
-        <section id="contact">
-          <Contact />
         </section>
       </main>
     </div>

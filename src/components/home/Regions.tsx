@@ -119,9 +119,9 @@ export function Regions() {
                                     transition={{ duration: 0.3 }}
                                     className="h-full"
                                 >
-                                    <h4 className={`text-xl font-semibold mb-4 text-blue-600`}>
+                                    <h3 className={`text-xl font-semibold mb-4 text-blue-600`}>
                                         {regions[activeRegion].name}
-                                    </h4>
+                                    </h3>
                                     <p className="text-gray-600 mb-6">
                                         {regions[activeRegion].description}
                                     </p>

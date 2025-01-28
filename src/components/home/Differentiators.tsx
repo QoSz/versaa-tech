@@ -108,34 +108,35 @@ export function Differentiators() {
                     {differentiators.map((item, index) => (
                         <motion.div
                             key={index}
-                            className="relative p-6 rounded-lg transition-transform duration-300 hover:scale-105"
+                            className="relative p-6 rounded-2xl transition-all duration-300 hover:shadow-[0_0_30px_rgba(8,49,78,0.12)] group"
                             variants={itemVariants}
-                            whileHover={{ scale: 1.05 }}
                         >
-                            <div className="flex flex-col items-center text-center">
-                                <div className="p-3 bg-[#08314e]/10 rounded-full mb-4">
+                            <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/0 via-blue-500/0 to-blue-500/0 group-hover:from-blue-500/3 group-hover:via-blue-500/5 group-hover:to-blue-500/3 transition-all duration-300 -z-10" />
+                            <div className="flex flex-col items-center text-center relative z-10">
+                                <div className="p-3 bg-[#08314e]/10 rounded-full mb-4 transition-transform duration-300 group-hover:scale-110">
                                     {typeof item.icon === 'string' ? (
                                         <Image
                                             src={item.icon}
                                             alt={item.title}
                                             width={28}
                                             height={28}
-                                            className={item.color}
+                                            className={`${item.color} transition-all duration-300 group-hover:brightness-110`}
                                             fetchPriority="low"
                                             loading="lazy"
                                         />
                                     ) : (
-                                        createElement(item.icon, { className: `w-7 h-7 ${item.color}` })
+                                        createElement(item.icon, { 
+                                            className: `w-7 h-7 ${item.color} transition-all duration-300 group-hover:brightness-110` 
+                                        })
                                     )}
                                 </div>
-                                <h3 className={`text-xl font-semibold text-gray-800 mb-2`}>
+                                <h3 className={`text-xl font-semibold text-gray-800 mb-2 transition-colors duration-300 group-hover:text-gray-900`}>
                                     {item.title}
                                 </h3>
-                                <p className="text-gray-600 text-sm">
+                                <p className="text-gray-600 text-sm transition-colors duration-300 group-hover:text-gray-700">
                                     {item.description}
                                 </p>
                             </div>
-                            <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-blue-100/20 to-transparent opacity-50 z-[-1]"></div>
                         </motion.div>
                     ))}
                 </motion.div>

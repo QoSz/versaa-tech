@@ -1,35 +1,44 @@
 import React from 'react'
 import Link from 'next/link'
-import { LayoutGrid, Building2, Lightbulb, Users, Building, Phone, Shield } from 'lucide-react'
+import { LayoutGrid, Building2, Lightbulb, Users, Building, Phone, Shield, Mail } from 'lucide-react'
 import { Separator } from "@/components/ui/separator"
 import Image from 'next/image'
 
-
-
 export function Footer() {
+    const regions = [
+        "East Africa",
+        "Middle East",
+        "Mexico",
+        "USA"
+    ]
+
+    const formatRegionUrl = (region: string) => {
+        return `/?region=${region.toLowerCase().replace(/\s+/g, '-')}#regions`
+    }
+
     return (
         <footer className="bg-gradient-to-r from-blue-500 to-blue-700 text-white">
-            <div className="px-8 py-8">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div className="space-y-4">
-                        <Link href="/">
+            <div className="container mx-auto px-6 pt-12 pb-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+                    <div className="space-y-6">
+                        <Link href="/" className="inline-block">
                             <Image 
                                 src="/images/versaatech-logo.png"
                                 alt="Versaa Tech Logo"
-                                width={130}
-                                height={130}
-                                className="w-[130px] h-[130px]"
+                                width={100}
+                                height={100}
+                                className="w-[100px] h-[100px]"
                                 loading="lazy"
                                 fetchPriority="low"
                             />
                         </Link>
-                        <p className="text-sm text-gray-300">
+                        <p className="text-sm leading-relaxed text-gray-200">
                             Versaa Tech is a knowledge-driven organization built on a foundation of deep expertise. Our core strengths exist in our comprehensive understanding of job trends, actionable market insights, and extensive experience, which enable us to deliver exceptional value.
                         </p>
                     </div>
-                    <div className="space-y-4">
-                        <h3 className="text-lg font-semibold">Quick Links</h3>
-                        <ul className="space-y-2">
+                    <div className="space-y-6">
+                        <h3 className="text-xl font-semibold">Quick Links</h3>
+                        <ul className="space-y-3">
                             {[
                                 { name: 'Overview', href: '#overview', icon: LayoutGrid },
                                 { name: 'Industries', href: '#industries', icon: Building2 },
@@ -41,16 +50,16 @@ export function Footer() {
                             ].map((item) => (
                                 <li key={item.name}>
                                     {item.isRoute ? (
-                                        <Link href={item.href} className="text-sm text-gray-300 hover:text-blue-200 transition-colors flex items-center gap-2">
-                                            {React.createElement(item.icon, { size: 14 })}
+                                        <Link href={item.href} className="text-sm text-gray-200 hover:text-white transition-colors flex items-center gap-2">
+                                            {React.createElement(item.icon, { size: 16 })}
                                             {item.name}
                                         </Link>
                                     ) : (
                                         <Link
                                             href={`/${item.href}`}
-                                            className="text-sm text-gray-300 hover:text-blue-200 transition-colors flex items-center gap-2"
+                                            className="text-sm text-gray-200 hover:text-white transition-colors flex items-center gap-2"
                                         >
-                                            {React.createElement(item.icon, { size: 14 })}
+                                            {React.createElement(item.icon, { size: 16 })}
                                             {item.name}
                                         </Link>
                                     )}
@@ -58,18 +67,40 @@ export function Footer() {
                             ))}
                         </ul>
                     </div>
-                    <div className="space-y-4">
-                        <h3 className="text-lg font-semibold">Contact Us</h3>
-                        <p className="text-sm text-gray-300">
-                            <span className="block">Meydan Grandstand, 6th floor, Meydan Road</span>
-                            <span className="pb-2 block">Nad Al Sheba, Dubai, U.A.E</span>
-                            <a href="mailto:info@versaatech.com" className="hover:text-blue-200 pb-2 block">info@versaatech.com</a>
-                        </p>
+                    <div className="space-y-8">
+                        <div className="space-y-4">
+                            <h3 className="text-xl font-semibold">Contact Us</h3>
+                            <div className="space-y-2 text-gray-200">
+                                <p className="text-sm flex items-center gap-2">
+                                    Meydan Grandstand, 6th floor, Meydan Road, Nad Al Sheba, Dubai, U.A.E
+                                </p>
+                                <a href="mailto:info@versaatech.com" className="text-sm hover:text-white transition-colors flex items-center gap-2">
+                                    <Mail size={16} />
+                                    info@versaatech.com
+                                </a>
+                            </div>
+                        </div>
+                        <div className="space-y-4">
+                            <h3 className="text-xl font-semibold">Regions</h3>
+                            <ul className="space-y-3">
+                                {regions.map((region) => (
+                                    <li key={region}>
+                                        <Link
+                                            href={formatRegionUrl(region)}
+                                            className="text-sm text-gray-200 hover:text-white transition-colors flex items-center gap-2"
+                                        >
+                                            <Building2 size={16} />
+                                            {region}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <Separator className="my-8 bg-white/20" />
-                <div className="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0">
-                    <p className="text-sm text-gray-300 text-center">
+                <div className="text-center">
+                    <p className="text-sm text-gray-200">
                         &copy; {new Date().getFullYear()} Versaa Tech. All rights reserved.
                     </p>
                 </div>

@@ -1,7 +1,8 @@
 "use client"
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { useSearchParams } from 'next/navigation'
 
 const regions = [
     {
@@ -51,9 +52,23 @@ const regions = [
 
 export function Regions() {
     const [activeRegion, setActiveRegion] = useState(0)
+    const searchParams = useSearchParams()
+    
+    useEffect(() => {
+        const region = searchParams.get('region')
+        if (region) {
+            const formattedRegion = region.replace(/-/g, ' ')
+            const index = regions.findIndex(r => 
+                r.name.toLowerCase() === formattedRegion.toLowerCase()
+            )
+            if (index !== -1) {
+                setActiveRegion(index)
+            }
+        }
+    }, [searchParams])
 
     return (
-        <section className="py-12">
+        <section id="regions" className="py-12">
             <div className="container mx-auto px-4">
                 <div>
                     <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent mb-8 text-center">Regions We Serve</h2>

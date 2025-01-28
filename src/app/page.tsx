@@ -25,7 +25,9 @@ export default function Home() {
         <section id="differentiators" className={sectionSpacing}>
           <Differentiators />
         </section>
-        <Regions />
+        <section id="regions" className={sectionSpacing}>
+          <Regions />
+        </section>
         <section id="about" className={sectionSpacing}>
           <About />
           <section id="about-leadership" className={sectionSpacing}>

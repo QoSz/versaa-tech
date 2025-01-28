@@ -3,35 +3,37 @@
 import { motion } from 'framer-motion'
 import { Mail, MapPin } from 'lucide-react'
 import { Card, CardContent } from "@/components/ui/card"
-import { ContactForms } from '@/components/home/ContactForms' // Updated path
+import { ContactForms } from '@/components/home/ContactForms'
 
 const slideFromBottom = {
     hidden: { opacity: 0, y: 50 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
 };
 
-export default function ContactPage() { // Renamed component to ContactPage and exported as default
+export default function ContactPage() {
     return (
-        <section className="py-12 bg-[#f7fffc]">
-            <div className="px-4 md:px-8">
+        <section className="py-12 bg-[#f7fffc] overflow-hidden">
+            <div className="px-4 md:px-8 w-full max-w-[100vw]">
                 <motion.div
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
-                    className="max-w-6xl mx-auto"
+                    className="max-w-6xl mx-auto w-full"
                 >
                     <motion.h2
-                        className="text-3xl font-bold text-center mb-12 text-blue-600"
+                        className="text-3xl font-bold text-center mb-12 text-blue-600 px-4"
                     >
                         Lets Have a Conversation ...
                     </motion.h2>
 
                     {/* Forms Section */}
-                    <ContactForms />
+                    <div className="w-full overflow-hidden">
+                        <ContactForms />
+                    </div>
 
-                    {/* Updated Cards Section with wider container */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mx-auto">
+                    {/* Cards Section */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mx-auto w-full">
                         {/* Email Card */}
                         <motion.div
                             className="w-full"
